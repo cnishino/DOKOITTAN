@@ -1,24 +1,25 @@
-# README
+# <DOKOITTAN>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要 子連れのお出かけ投稿サイト
+### サイトテーマ
+<子連れのお出かけ×SNS>
 
-Things you may want to cover:
+### テーマを選んだ理由
+<自身が子供とお出かけするときにあれば便利なため。
+　また、自身が投稿することでお出かけした記録を残せ、見返して楽しみたいため。>
 
-* Ruby version
+### ターゲットユーザ
+<子育て家庭>
 
-* System dependencies
+### 主な利用シーン
+<家族でお出かけする場所を探すとき、お出かけした記録を残すとき>
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
