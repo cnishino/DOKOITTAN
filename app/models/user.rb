@@ -41,8 +41,15 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+  def self.guest #ゲストログイン用
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
 
-  def self.looks(search, word)
+  def self.looks(search, word) #ユーザー検索機能用（完全一致、前方一致、後方一致、部分）
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
     elsif search == "forward_match"

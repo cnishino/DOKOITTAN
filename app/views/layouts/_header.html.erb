@@ -1,0 +1,54 @@
+    <header class="bg-info text-white">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+
+          <a class="navbar-brand p-3 text-light" href="/">DOKOITTAN</a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
+            <!--会員ログイン時のリンク表示 -->
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'mypage', user_path(current_user.id), class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'users', users_path, class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'post_locations', post_locations_path, class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "sign_out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+              </li>
+
+            <!--管理者ログイン時のリンク表示 -->
+            <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'users', admin_users_path, class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'post_locations', admin_post_locations_path, class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'genres', admin_genres_path, class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'prefectures', admin_prefectures_path, class: 'nav-link text-light' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "sign_out", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
+              </li>
+
+            <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
