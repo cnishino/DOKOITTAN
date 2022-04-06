@@ -16,12 +16,12 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
-  has_one_attached :profile_image
+  has_one_attached :profile_image #アクティブストレージでプロフィール画像表示
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
-  def get_profile_image(width, height)
+  def get_profile_image(width, height) #プロフィール画像無い時、サイズ指定のためのメソッド
     unless profile_image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      profile_image.attach(io: File.open(file_path), filename: 'default_image.jpg', content_type: 'image/jpeg')
@@ -41,7 +41,7 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   def self.guest #ゲストログイン用
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
