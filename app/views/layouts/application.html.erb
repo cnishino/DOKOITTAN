@@ -13,8 +13,10 @@
   <body class="d-flex flex-column vh-100">
     <%= render "layouts/header" %>
 
-    <% if flash[:notice] %><p><%= notice %></p>
-    <% else %><p><%= alert %></p>
+    <% if flash[:notice] %>
+      <p class="text-success col-md-5 sm-5 offset-md-1 sm-1"><%= notice %></p>
+    <% else %>
+      <p class="text-danger col-md-5 sm-5 offset-md-1 sm-1">
     <% end %>
 
     <%= yield %>

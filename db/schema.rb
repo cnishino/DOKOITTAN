@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_070114) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "genre", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_070114) do
     t.integer "genre_id", null: false
     t.integer "prefecture_id", null: false
     t.string "facility_name", null: false
-    t.integer "target_age", null: false
+    t.integer "target_age_id", null: false
     t.text "introduction", null: false
     t.float "review", null: false
     t.boolean "is_active", default: true, null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_070114) do
   end
 
   create_table "prefectures", force: :cascade do |t|
-    t.string "prefecture", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_070114) do
   end
 
   create_table "target_ages", force: :cascade do |t|
-    t.string "target_age", null: false
+    t.string "target", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

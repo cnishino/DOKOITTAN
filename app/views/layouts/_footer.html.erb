@@ -1,11 +1,69 @@
   <div class="push">
     <footer>
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p class="fixed-bottom bg-info text-center text-light mb-auto p-2">DWC 202202</p>
-          </div>
-        </div>
-      </div>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropwn">
+              <ul class="navbar-nav ml-auto">
+
+                <!--会員ログイン時のリンク表示 -->
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to user_path(current_user.id) , class: 'nav-link text-light' do %>
+                      <i class="fas fa-user"></i>mypage
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to new_post_location_path(current_user.id) , class: 'nav-link text-light' do %>
+                      <i class="fas fa-plus-circle"></i>post
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to users_path , class: 'nav-link text-light' do %>
+                      <i class="fas fa-users"></i>users
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to post_locations_path , class: 'nav-link text-light' do %>
+                      <i class="far fa-images"></i>locations
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-light' do %>
+                      <i class="fas fa-sign-out-alt"></i>sign_out
+                    <% end %>
+                  </li>
+
+                <!--管理者ログイン時のリンク表示 -->
+                <% elsif admin_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to admin_users_path , class: 'nav-link text-light' do %>
+                      <i class="fas fa-users"></i>users
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%#= link_to admin_post_locations_path , class: 'nav-link text-light' do %>
+                      <i class="far fa-images"></i>locations
+                    <%# end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to admin_genres_path , class: 'nav-link text-light' do %>
+                      <i class="fas fa-plus"></i>genres
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to admin_prefectures_path , class: 'nav-link text-light' do %>
+                      <i class="fas fa-plus"></i>prefectures
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-light' do %>
+                      <i class="fas fa-sign-out-alt"></i>sign_out
+                    <% end %>
+                  </li>
+
+                <% end %>
+
+              </ul>
+            </div>
+
     </footer>
   </div>

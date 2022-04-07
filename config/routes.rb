@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'target_ages/index'
+  end
+  namespace :admin do
+    get 'post_locations/index'
+    get 'post_locations/show'
+  end
   # 会員用
   # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -34,7 +41,6 @@ Rails.application.routes.draw do
     end
 
   end
-
 
 
   # 管理者用
