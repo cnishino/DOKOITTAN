@@ -14,9 +14,9 @@
     <%= render "layouts/header" %>
 
     <% if flash[:notice] %>
-      <p class="text-success col-md-5 sm-5 offset-md-1 sm-1"><%= notice %></p>
+      <p class="text-success offset-md-1 sm-1"><%= notice %></p>
     <% else %>
-      <p class="text-danger col-md-5 sm-5 offset-md-1 sm-1">
+      <p class="text-danger offset-md-1 sm-1"><%= alert %></p>
     <% end %>
 
     <%= yield %>
