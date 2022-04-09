@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'target_ages/index'
-  end
-  namespace :admin do
-    get 'post_locations/index'
-    get 'post_locations/show'
-  end
   # 会員用
-  # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -44,7 +36,6 @@ Rails.application.routes.draw do
 
 
   # 管理者用
-  # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
@@ -54,8 +45,10 @@ Rails.application.routes.draw do
     get "/search" => "searches#search", as: "search" #検索窓表示
     post "/search" => "searches#search_data", as: "search_data" #検索機能
     resources :users, only: [:index, :show, :edit, :update] #会員機能
-    resources :genres, only: [:index, :create, :edit, :update] #ジャンル機能
-    resources :prefectures, only: [:index, :create, :edit, :update] #都道府県別
+    resources :genres, only: [:index, :create, :edit, :update, :destroy] #ジャンル機能
+    resources :prefectures, only: [:index, :create, :edit, :update, :destroy] #都道府県別
+    resources :target_ages, only: [:index, :create, :edit, :update, :destroy] #都道府県別
+    resources :post_locations, only: [:index, :create, :edit, :update, :destroy] #都道府県別
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
