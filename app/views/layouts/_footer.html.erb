@@ -15,27 +15,27 @@
             <!--会員ログイン時のリンク表示 -->
               <li class="nav-item">
                 <%= link_to user_path(current_user.id) , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-user"></i>mypage
+                  <i class="fas fa-user"></i>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%#= link_to new_post_location_path(current_user.id) , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-plus-circle"></i>post
+                  <i class="fas fa-plus-circle"></i>
                 <%# end %>
               </li>
               <li class="nav-item">
                 <%= link_to users_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-users"></i>users
+                  <i class="fas fa-users"></i>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to post_locations_path , class: 'nav-link text-warning' do %>
-                  <i class="far fa-images"></i>locations
+                  <i class="far fa-images"></i>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-sign-out-alt"></i>sign_out
+                  <i class="fas fa-sign-out-alt"></i>
                 <% end %>
               </li>
 
@@ -43,27 +43,27 @@
           <% elsif admin_signed_in? %>
               <li class="nav-item">
                 <%= link_to admin_users_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-users"></i>users
+                  <i class="fas fa-users"></i>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%#= link_to admin_post_locations_path , class: 'nav-link text-warning' do %>
-                  <i class="far fa-images"></i>locations
+                  <i class="far fa-images"></i>
                 <%# end %>
               </li>
               <li class="nav-item">
                 <%= link_to admin_genres_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-plus"></i>genres
+                  <i class="fas fa-plus"></i>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to admin_prefectures_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-plus"></i>prefectures
+                  <i class="fas fa-plus"></i>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-sign-out-alt"></i>sign_out
+                  <i class="fas fa-sign-out-alt"></i>
                 <% end %>
               </li>
             <% else %>
