@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   # 会員用
+
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -14,28 +15,29 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     # get 'about' => 'homes#about', as: 'about'
     get  "/users/sign_out" => "sessions#destroy"
+    get  "/post_location/form" => "post_locations#form"
+    post "/post_location/form" => "post_locations#create"
     get "/mypage" => "users#mypage" #会員情報詳細ページ（マイページ）表示
     get "/users/unsubscribe" => "users#unsubscribe" #退会確認画面の表示
     patch "/users/withdraw" => "users#withdraw" #退会フラグを切り替える
     get "/search" => "searches#search", as: "search" #検索窓表示
     post "/search" => "searches#search_data", as: "search_data" #検索機能
 
-    resources :users, only: [:index,:show,:edit,:update] #会員機能
-    resources :post_locations, only: [:index,:show,:edit,:create,:destroy,:update] do #投稿機能
-      resources :post_comments, only: [:create, :destroy] #コメント機能
-      resource :favorites, only: [:create, :destroy] #いいね機能
-    end
-
-    resources :users, only: [:index,:show,:edit,:update] do #フォロー・フォロワー機能
-      resource :relationships, only: [:create, :destroy]
+    resources :users, only: [:index,:show,:edit,:update] do#会員機能
+      resource :relationships, only: [:create,:destroy] #フォロー・フォロワー機能
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
 
+    resources :post_locations, only: [:index,:show,:edit,:create,:destroy,:update] do #投稿機能
+      resources :post_comments, only: [:create, :destroy] #コメント機能
+      resource :favorites, only: [:create,:destroy] #いいね機能
+    end
   end
 
 
   # 管理者用
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
@@ -45,10 +47,9 @@ Rails.application.routes.draw do
     get "/search" => "searches#search", as: "search" #検索窓表示
     post "/search" => "searches#search_data", as: "search_data" #検索機能
     resources :users, only: [:index, :show, :edit, :update] #会員機能
-    resources :genres, only: [:index, :create, :edit, :update, :destroy] #ジャンル機能
-    resources :prefectures, only: [:index, :create, :edit, :update, :destroy] #都道府県別
-    resources :target_ages, only: [:index, :create, :edit, :update, :destroy] #都道府県別
-    resources :post_locations, only: [:index, :create, :edit, :update, :destroy] #都道府県別
+    resources :genres, only: [:index, :create, :edit, :update, :destroy] #ジャンル登録
+    resources :target_ages, only: [:index, :create, :edit, :update, :destroy] #対象年齢登録
+    resources :post_locations, only: [:index, :destroy] #投稿
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

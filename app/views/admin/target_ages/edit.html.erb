@@ -1,15 +1,14 @@
 <div class="container">
-
   <div class="row">
     <div class="col-3 offset-1">
-      <h5 class="bg-light text-center my-5">ジャンル編集</h5>
+      <h5 class="bg-light text-center my-5">対象年齢項目編集</h5>
     </div>
   </div>
   <div class="row">
     <div class="col-10 offset-2">
-      <%= form_with model: @genre, url: admin_genre_path, local: true do |f| %>
+      <%= form_with model: @target_age, url: admin_target_age_path, local: true do |f| %>
         <%= f.label :ジャンル名, class: "font-wegit-bold" %>
-        <%= f.text_field :name, class: "offset-1" %>
+        <%= f.text_field :target, class: "offset-1" %>
         <%= f.submit "変更を保存", class: "btn btn-success offset-1" %>
       <% end %>
     </div>

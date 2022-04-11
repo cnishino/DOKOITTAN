@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_070114) do
   create_table "post_locations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "genre_id", null: false
-    t.integer "prefecture_id", null: false
+    t.integer "prefecture", default: 0, null: false
     t.string "facility_name", null: false
     t.integer "target_age_id", null: false
     t.text "introduction", null: false

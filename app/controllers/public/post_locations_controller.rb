@@ -7,15 +7,17 @@ class Public::PostLocationsController < ApplicationController
   end
 
   def index
-    @post_locations = PostLocation.where(is_active: "true" )#.page(params[:page]).per(8)
+    @post_locations = PostLocation.where(is_active: "true")#.page(params[:page]).per(8)
     # @genres = Genre.all
     # @prefectures = Prefecture.all
+  end
+
+  def form
   end
 
   def create
     @post_location = PostLocation.new(post_location_params)
     @post_location.user_id = current_user.id
-    #@post_location.is_active == true
     if @post_location.save
       redirect_to post_location_path(@post_location)
       flash[:notice] = "投稿しました。"
@@ -27,6 +29,7 @@ class Public::PostLocationsController < ApplicationController
   end
 
   def edit
+    @post_location = PostLocation.find(params[:id])
   end
 
   def update
@@ -50,7 +53,7 @@ class Public::PostLocationsController < ApplicationController
   private
 
   def post_location_params
-    params.require(:post_location).permit(:user_id, :genre_id, :prefecture_id, :facility_name, :target_age, :introduction, :review, :is_active)
+    params.permit(:user_id, :genre_id, :prefecture, :facility_name, :target_age_id, :introduction, :is_active)
   end
 
   def ensure_correct_user

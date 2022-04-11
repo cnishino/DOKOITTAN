@@ -1,2 +1,30 @@
-<h1>Public::PostLocations#show</h1>
-<p>Find me in app/views/public/post_locations/show.html.erb</p>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-8 offset-md-1'>
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>施設・店舗名</th>
+            <th>紹介文</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to(post_location.user) do %>
+                  <%= image_tag post_location.user.get_profile_image(50,50) %>
+                <% end %>
+            </td>
+            <td><%= link_to post_location.facility_name, post_location, class: "post_location_#{post_location.id}" %></td>
+            <td><%= post_location.introduction %></td>
+            <td class=<%= "comments_count-" + post_location.id.to_s %>>Comment: <%= post_location.post_comments.count %></td>
+            <td class=<%= "favorite-" + post_location.id.to_s %>>
+            <%= render "favorites/btn", post_location: post_location %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

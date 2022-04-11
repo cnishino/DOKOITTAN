@@ -1,76 +1,75 @@
-<footer class="bg-info text-warning">
-  <nav class="navbar navbar-expand-lg navbar-warning">
+<footer>
+<!--会員ログイン時のリンク表示 -->
+<% if user_signed_in? %>
+  <nav class="navbar navbar-expand-lg navbar-info bg-info text-warning">
     <div class="container">
-
-  <!--    <a class="navbar-brand p-3 text-warning" href="/">DOKOITTAN</a>-->
-
-  <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"-->
-  <!--                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
-  <!--      <span class="navbar-toggler-icon"></span>-->
-  <!--    </button>-->
-
-          <% if user_signed_in? %>
-          <!--<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
-            <ul class="navbar-nav ml-auto">
-            <!--会員ログイン時のリンク表示 -->
-              <li class="nav-item">
-                <%= link_to user_path(current_user.id) , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-user"></i>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to new_post_location_path(current_user.id) , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-plus-circle"></i>
-                <%# end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to users_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-users"></i>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to post_locations_path , class: 'nav-link text-warning' do %>
-                  <i class="far fa-images"></i>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-sign-out-alt"></i>
-                <% end %>
-              </li>
-
-            <!--管理者ログイン時のリンク表示 -->
-          <% elsif admin_signed_in? %>
-              <li class="nav-item">
-                <%= link_to admin_users_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-users"></i>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%#= link_to admin_post_locations_path , class: 'nav-link text-warning' do %>
-                  <i class="far fa-images"></i>
-                <%# end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_genres_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-plus"></i>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_prefectures_path , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-plus"></i>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-warning' do %>
-                  <i class="fas fa-sign-out-alt"></i>
-                <% end %>
-              </li>
-            <% else %>
-
-            <% end %>
-        </ul>
-      <!--</div>-->
+      <!--<ul class="navbar-nav ml-auto">-->
+      <!--  <li class="nav-item">-->
+      <!--    <%#= link_to user_path(current_user.id) , class: 'nav-link text-warning' do %>-->
+      <!--      <i class="fas fa-user"></i>-->
+      <!--    <%# end %>-->
+      <!--  </li>-->
+      <!--  <li class="nav-item">-->
+      <!--    <%#= link_to post_locations_path, class: 'nav-link text-warning' do %>-->
+      <!--      <i class="fas fa-plus-circle"></i>-->
+      <!--    <%# end %>-->
+      <!--  </li>-->
+      <!--  <li class="nav-item">-->
+      <!--    <%#= link_to users_path , class: 'nav-link text-warning' do %>-->
+      <!--      <i class="fas fa-users"></i>-->
+      <!--    <%# end %>-->
+      <!--  </li>-->
+      <!--  <li class="nav-item">-->
+      <!--    <%#= link_to post_locations_path , class: 'nav-link text-warning' do %>-->
+      <!--      <i class="far fa-images"></i>-->
+      <!--    <%# end %>-->
+      <!--  </li>-->
+      <!--  <li class="nav-item">-->
+      <!--    <%#= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-warning' do %>-->
+      <!--      <i class="fas fa-sign-out-alt"></i>-->
+      <!--    <%# end %>-->
+      <!--  </li>-->
+      <!--</ul>-->
     </div>
   </nav>
+
+<!--管理者ログイン時のリンク表示 -->
+<% elsif admin_signed_in? %>
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning text-info">
+      <div class="container">
+        <!--<ul class="navbar-nav ml-auto">-->
+        <!--  <li class="nav-item">-->
+        <!--    <%#= link_to admin_users_path , class: 'nav-link text-info' do %>-->
+        <!--      <i class="fas fa-users"></i>-->
+        <!--    <%# end %>-->
+        <!--  </li>-->
+        <!--  <li class="nav-item">-->
+        <!--    <%#= link_to admin_post_locations_path , class: 'nav-link text-info' do %>-->
+        <!--      <i class="far fa-images"></i>-->
+        <!--    <%# end %>-->
+        <!--  </li>-->
+        <!--  <li class="nav-item">-->
+        <!--    <%#= link_to admin_genres_path , class: 'nav-link text-info' do %>-->
+        <!--      <i class="fas fa-plus"></i>-->
+        <!--    <%# end %>-->
+        <!--  </li>-->
+        <!--  <li class="nav-item">-->
+        <!--    <%#= link_to admin_prefectures_path , class: 'nav-link text-info' do %>-->
+        <!--      <i class="fas fa-plus"></i>-->
+        <!--    <%# end %>-->
+        <!--  </li>-->
+        <!--  <li class="nav-item">-->
+        <!--    <%#= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-info' do %>-->
+        <!--      <i class="fas fa-sign-out-alt"></i>-->
+        <!--    <%# end %>-->
+        <!--  </li>-->
+        <!--</ul>-->
+      </div>
+    </nav>
+<% else %>
+  <nav class="navbar navbar-expand-lg navbar-info bg-info text-warning">
+    <div class="container">
+    </div>
+  </nav>
+<% end %>
 </footer>

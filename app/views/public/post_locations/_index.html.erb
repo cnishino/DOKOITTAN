@@ -1,26 +1,28 @@
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Facility name</th>
-      <th>Introduction</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% post_locations.each do |post_location| %>
-      <tr>
-        <td><%= link_to(post_location.user) do %>
-              <%= image_tag post_location.user.get_profile_image(50,50) %>
-            <% end %>
-        </td>
-        <td><%= link_to post_location.facility_name,post_location, class: "post_location_#{post_location.id}" %></td>
-        <td><%= post_location.introduction %></td>
-        <td class=<%= "comments_count-" + post_location.id.to_s %>>Comment: <%= post_location.post_comments.count %></td>
-        <td class=<%= "favorite-" + post_location.id.to_s %>>
-        <%= render "favorites/btn", post_location: post_location %>
-        </td>
-      </tr>
+<div class="card-list-container py-5">
+  <% post_locations.each do |post_location| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to post_location_path(post_location.id) do %>
+      <%= image_tag post_location.post_image, class:"card-img-top"; %>
     <% end %>
-  </tbody>
-</table>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <%= image_tag post_location.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(post_location_path(post_location.id), class:"text-dark") do %>
+              <strong><i class="far fa-flag"></i><span> <%= post_location.facility_name %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text">ジャンル：<%= post_location.genre %></p>
+          <p class="card-text">都道府県：<%= post_location.prefecture %></p>
+          <p class="card-text">対象年齢：<%= post_location.target_age %></p>
+          <span><i class="fas fa-user"></i> By <%= post_location.user.name %> ｜ </span>
+          <span><%= link_to "#{post_location.post_comments.count} コメント", post_location_path(post_location.id), class:"text-dark" %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

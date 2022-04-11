@@ -1,14 +1,12 @@
 <div class='container px-5 px-sm-0'>
+  <h4>マイページ</h4>
   <div class='row'>
-    <div class='col-md-3'>
-      <h4>User info</h4>
+    <div class='col-3'>
       <%= render 'info', user: @user %>
-      <!--<h4 class="mt-3">New Post locations</h4>-->
-      <%#= render 'post_locations/form', post_location: @post_location %>
     </div>
-    <div class='col-md-8 offset-md-1'>
-      <h4>Post locations</h4>
-      <%#= render 'post_locations/index',post_locations: @post_locations %>
+    <div class='col-8'>
+      <h4>投稿</h4>
+      <%= render 'public/post_locations/index', post_locations: @post_locations %>
     </div>
   </div>
 </div>

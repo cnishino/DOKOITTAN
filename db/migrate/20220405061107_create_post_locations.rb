@@ -4,7 +4,7 @@ class CreatePostLocations < ActiveRecord::Migration[6.1]
 
       t.integer:user_id, null: false
       t.integer:genre_id, null: false
-      t.integer:prefecture_id, null: false
+      t.integer :prefecture, null: false, default: 0
       t.string:facility_name, null: false
       t.integer:target_age_id, null: false
       t.text:introduction, null: false

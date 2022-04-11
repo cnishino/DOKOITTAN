@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
+  <body>
     <%= render "layouts/header" %>
 
     <% if flash[:notice] %>
@@ -19,9 +19,10 @@
     <% else %>
       <p class="text-danger offset-md-1 sm-1"><%= alert %></p>
     <% end %>
-
+    
+    <main class="d-flex flex-column vh-100 mb-auto">
     <%= yield %>
-
+    </main>
     <%= render "layouts/footer" %>
   </body>
 </html>

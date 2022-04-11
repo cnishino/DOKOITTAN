@@ -1,78 +1,92 @@
-<header class="bg-info text-warning">
-  <!--<nav class="navbar navbar-expand-lg navbar-light">-->
+<header>
+<!--会員ログイン時の表示-->
+<% if user_signed_in? %>
+  <nav class="navbar navbar-expand-lg navbar-info bg-info text-warning">
     <div class="container">
-
       <a class="navbar-brand p-2 text-warning" href="/">DOKOITTAN</a>
-
-      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"-->
-      <!--              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
-      <!--  <span class="navbar-toggler-icon"></span>-->
-      <!--</button>-->
-        <!--会員ログイン時の表示 -->
-        <% if user_signed_in? %>
-          <a class="text-center text-warning mb-auto p-4">ようこそ、<%= current_user.name %>さん!</a>
-          <!--<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
-          <!--  <ul class="navbar-nav ml-auto">-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to user_path(current_user.id) , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-user"></i>mypage-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-                <%#= link_to new_post_location_path(current_user.id) , class: 'nav-link text-light' do %>
-          <!--        <i class="fas fa-plus-circle"></i>post-->
-                <%# end %>
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to users_path , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-users"></i>users-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to post_locations_path , class: 'nav-link text-light' do %>-->
-          <!--        <i class="far fa-images"></i>locations-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-sign-out-alt"></i>sign_out-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-
-            <!--管理者ログイン時の表示 -->
-          <% elsif admin_signed_in? %>
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to admin_users_path , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-users"></i>users-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-                <%#= link_to admin_post_locations_path , class: 'nav-link text-light' do %>
-          <!--        <i class="far fa-images"></i>locations-->
-                <%# end %>
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to admin_genres_path , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-plus"></i>genres-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to admin_prefectures_path , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-plus"></i>prefectures-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <%#= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-light' do %>-->
-          <!--        <i class="fas fa-sign-out-alt"></i>sign_out-->
-          <!--      <%# end %>-->
-          <!--    </li>-->
-            <% else %>
-
-            <% end %>
-
-
-        <!--</ul>-->
-      <!--</div>-->
-    <!--</div>-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <a class="text-center text-warning mb-auto p-4">ようこそ、<%= current_user.name %>さん!</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <%= link_to user_path(current_user.id) , class: 'nav-link text-warning' do %>
+                <i class="fas fa-user"></i>mypage
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to post_location_form_path, class: 'nav-link text-warning' do %>
+                <i class="fas fa-plus-circle"></i>post
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to users_path , class: 'nav-link text-warning' do %>
+                <i class="fas fa-users"></i>users
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to post_locations_path , class: 'nav-link text-warning' do %>
+                <i class="far fa-images"></i>locations
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-warning' do %>
+                <i class="fas fa-sign-out-alt"></i>sign_out
+              <% end %>
+            </li>
+          </ul>
+      </div>
+    </div>
   </nav>
+
+<!--管理者ログイン時の表示-->
+<% elsif admin_signed_in? %>
+  <nav class="navbar navbar-expand-lg navbar-warning bg-warning text-info">
+    <div class="container">
+      <a class="navbar-brand p-2 text-warning" href="/">DOKOITTAN</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to admin_users_path , class: 'nav-link text-info' do %>
+                  <i class="fas fa-users"></i>users
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_post_locations_path , class: 'nav-link text-info' do %>
+                  <i class="far fa-images"></i>locations
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_genres_path , class: 'nav-link text-info' do %>
+                  <i class="fas fa-plus"></i>genres
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_target_ages_path , class: 'nav-link text-info' do %>
+                  <i class="fas fa-plus"></i>target_ages
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-info' do %>
+                  <i class="fas fa-sign-out-alt"></i>sign_out
+                <% end %>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <% else %>
+    <nav class="navbar navbar-expand-lg navbar-info bg-info text-warning">
+      <div class="container">
+        <a class="navbar-brand p-2 text-warning" href="/">DOKOITTAN</a>
+        </div>
+      </div>
+    </nav>
+  <% end %>
 </header>

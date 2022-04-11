@@ -3,16 +3,17 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.all
+    @users = User.where(is_deleted: "false" )
   end
 
   def mypage
-    #@user = User.find(params[:current_user.id])
     @user = current_user
+       @post_locations = @user.post_locations.where(is_active: "true")#ステータスが投稿のもののみ表示
   end
 
   def show
     @user = User.find(params[:id])
+    @post_locations = @user.post_locations.where(is_active: "true")#ステータスが投稿のもののみ表示
   end
 
   def edit
@@ -37,7 +38,7 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
-
+    flash[:notice] = "退会しました。またのご利用をお待ちしております。"
   end
 
   private
