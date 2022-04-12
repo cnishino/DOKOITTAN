@@ -4,6 +4,7 @@ class Public::PostLocationsController < ApplicationController
 
   def show
     @post_location = PostLocation.find(params[:id])
+
   end
 
   def index
@@ -53,7 +54,7 @@ class Public::PostLocationsController < ApplicationController
   private
 
   def post_location_params
-    params.permit(:user_id, :genre_id, :prefecture, :facility_name, :target_age_id, :introduction, :is_active)
+    params.require(:post_location).permit(:user_id, :genre_id, :prefecture, :facility_name, :target_age_id, :introduction, :post_image, :is_active)
   end
 
   def ensure_correct_user

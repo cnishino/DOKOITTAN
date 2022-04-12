@@ -1,7 +1,10 @@
 class PostLocation < ApplicationRecord
   belongs_to :user
+  belongs_to :genre
+  belongs_to :target_age
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+
 
   has_one_attached :post_image #アクティブストレージで投稿画像表示
 
@@ -11,7 +14,7 @@ class PostLocation < ApplicationRecord
   validates :facility_name, presence:true, length: {maximum: 50 }
   validates :target_age_id, presence:true
   validates :introduction, presence:true, length: {maximum: 200}
-  #validates :review, presence:true
+  validates :post_image, presence:true
   validates :is_active, presence:true
 
   def favorited_by?(user)

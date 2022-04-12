@@ -32,3 +32,9 @@ footer{
     position: absolute;/*←絶対位置*/
     bottom: 0; /*下に固定*/
 }
+
+.card-img-top{
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}

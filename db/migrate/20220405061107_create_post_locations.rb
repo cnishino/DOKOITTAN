@@ -8,7 +8,6 @@ class CreatePostLocations < ActiveRecord::Migration[6.1]
       t.string:facility_name, null: false
       t.integer:target_age_id, null: false
       t.text:introduction, null: false
-      t.float:review, null: false
       t.boolean:is_active, null: false, default: true
 
       t.timestamps

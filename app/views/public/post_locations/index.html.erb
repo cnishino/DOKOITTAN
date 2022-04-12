@@ -1,9 +1,10 @@
 <div class='container px-5 px-sm-0'>
-  <%#= render 'layouts/errors', obj: @post_location %>
   <div class='row'>
     <div class='col-11 offset-1'>
-      <h2>新着</h2>
-      <%= render 'index', post_locations: @post_locations %>
+      <h4>投稿一覧</h4>
+      <div class=row>
+        <%= render 'index', post_locations: @post_locations %>
+      </div>
     </div>
   </div>
 </div>

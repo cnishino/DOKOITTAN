@@ -1,2 +1,33 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h5 class="text-center"><%= @user.name %>さんの情報</h5>
+
+      <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, local:true do |f| %>
+        <div class="form-group">
+          <label for="inputName">名前</label>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="inputImage">画像</label>
+          <%= f.file_field :profile_image, accept: "image/*", class: "w-100" %>
+        </div>
+        <div class="form-group">
+          <label for="inputText">自己紹介</label>
+          <%= f.text_area :introduction, class:"form-control", rows:"5" %>
+        </div>
+        <div class="form-group">
+          <label for="inputText">会員ステータス</label>
+           <%= f.radio_button :is_deletd, "f" %>
+           <%= f.label :会員ステータス, "有効", value: "f" %>
+           <%= f.radio_button :is_deletd, "t" %>
+           <%= f.label :会員ステータス, '退会', value: "t" %>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">変更内容を保存</button>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

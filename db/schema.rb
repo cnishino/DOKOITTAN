@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 2022_04_06_070114) do
     t.string "facility_name", null: false
     t.integer "target_age_id", null: false
     t.text "introduction", null: false
-    t.float "review", null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -3,12 +3,12 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.where(is_deleted: "false" )
+    @users = User.where.not(is_deleted: "t").where.not(id: "1")
   end
 
   def mypage
     @user = current_user
-       @post_locations = @user.post_locations.where(is_active: "true")#ステータスが投稿のもののみ表示
+    @post_locations = @user.post_locations.all
   end
 
   def show
@@ -35,6 +35,7 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
+    @user = current_user
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path

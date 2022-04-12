@@ -1,11 +1,11 @@
 <table class='table'>
-  <tr><%= image_tag user.get_profile_image(100,100) %></tr>
+  <tr><%= image_tag user.get_profile_image(100,100), class:"rounded-circle"; %></tr>
   <tr>
 	  <th>名前</th>
 	  <th><%= user.name %></th>
   </tr>
   <tr>
-	  <th>紹介</th>
+	  <th>自己紹介</th>
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
@@ -21,7 +21,8 @@
 <div class='row'>
   <% if current_user != user && user.name != "guestuser" %>
   <%# elsif user.name != "guestuser" %>
-    <td><%= render "relationships/btn", user: user %></td>
+    <td><%#= render "relationships/btn", user: user %></td>
+  <% else %>
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
