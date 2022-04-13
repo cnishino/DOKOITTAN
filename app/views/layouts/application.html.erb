@@ -14,15 +14,23 @@
   <body>
     <%= render "layouts/header" %>
 
-    <% if flash[:notice] %>
-      <p class="text-success offset-md-1 sm-1"><%= notice %></p>
-    <% else %>
-      <p class="text-danger offset-md-1 sm-1"><%= alert %></p>
-    <% end %>
-    
-    <main class="d-flex flex-column vh-100 mb-auto">
-    <%= yield %>
+
+    <main class="d-flex flex-column mb-auto">
+
+      <div class="d-flex justify-content-end m-2">
+        <%= render 'public/searches/form' %>
+      </div>
+
+      <% if flash[:notice] %>
+        <p class="text-success offset-md-1 sm-1"><%= notice %></p>
+      <% else %>
+        <p class="text-danger offset-md-1 sm-1"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+
     </main>
+
     <%= render "layouts/footer" %>
   </body>
 </html>

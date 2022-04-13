@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
-  # 一覧画面で使う
+  # フォロー・フォロワーの一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
@@ -49,17 +49,15 @@ class User < ApplicationRecord
     end
   end
 
-  def self.looks(search, word) #ユーザー検索機能用（完全一致、前方一致、後方一致、部分）
-    if search == "perfect_match"
-      @user = User.where("name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @user = User.where("name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @user = User.where("name LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @user = User.where("name LIKE?","%#{word}%")
+  def self.search_for(content, method) #会員検索用メソッド
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
     else
-      @user = User.all
+      User.where('name LIKE ?', '%' + content + '%')
     end
   end
 

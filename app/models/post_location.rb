@@ -17,8 +17,8 @@ class PostLocation < ApplicationRecord
   validates :post_image, presence:true
   validates :is_active, presence:true
 
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+  def favorited_by?(user) #いいねしているかの判定
+   Favorite.where(user_id: user.id).exists?
   end
 
   enum prefecture:{
@@ -38,20 +38,18 @@ class PostLocation < ApplicationRecord
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      post_image.attach(io: File.open(file_path), filename: 'default_image.jpg', content_type: 'image/jpeg')
     end
-      post_image.variant(resize_to_limit: [width, height]).processed
+     post_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @post_location = PostLocation.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @post_location = PostLocation.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @post_location = PostLocation.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @post_location = PostLocation.where("title LIKE?","%#{word}%")
+  def self.search_for(content, method) #投稿検索用メソッド
+    if method == 'perfect'
+      PostLocation.where(introduction: content)
+    elsif method == 'forward'
+      PostLocation.where('introduction LIKE ?', content+'%')
+    elsif method == 'backward'
+      PostLocation.where('introduction LIKE ?', '%'+content)
     else
-      @post_location = PostLocation.all
+      PostLocation.where('introduction LIKE ?', '%'+content+'%')
     end
   end
 end

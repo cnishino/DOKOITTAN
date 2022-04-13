@@ -1,0 +1,3 @@
+$(".comments_count-<%= @post_location.id %>").html("コメント数: <%= @post_location.post_comments.count %>");
+$(".post_comments").html("<%= escape_javascript(render partial: "pu/post_comments/index", locals: {post_location: @post_location}) %>");
+$("#post_comment_comment").val("");

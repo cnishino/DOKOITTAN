@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
   <nav class="navbar navbar-expand-lg navbar-warning bg-warning text-info">
     <div class="container">
-      <a class="navbar-brand p-2 text-info" href="/">DOKOITTAN</a>
+      <a class="navbar-brand p-2 text-info" href="/"><%= image_tag('logo.png') %></a>
       <a class="text-center bg-warning text-info">ようこそ、<%= current_user.name %>さん!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,12 +1,12 @@
 <div class='container px-5 px-sm-0'>
-  <h4>会員情報</h4>
   <div class='row'>
     <div class='col-3'>
-      <%= render 'info', user: @user %>
+      <h4>会員情報</h4>
+        <%= render 'info', user: @user %>
     </div>
     <div class='col-8'>
       <h4>投稿</h4>
-      <%= render 'public/post_locations/index', post_locations: @post_locations %>
+        <%= render 'public/post_locations/index', post_locations: @post_locations %>
     </div>
   </div>
 </div>

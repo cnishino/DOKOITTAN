@@ -14,6 +14,7 @@ class Public::PostLocationsController < ApplicationController
   end
 
   def form
+    @post_location = PostLocation.new
   end
 
   def create
