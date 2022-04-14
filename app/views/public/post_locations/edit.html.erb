@@ -2,10 +2,54 @@
   <%#= render 'layouts/errors', obj: @post_location %>
   <div class='row'>
     <div class='col-11 offset-1'>
-      <h2>投稿編集画面</h2>
-      <%= render 'form', post_location: @post_location %>
-  		<%= link_to 'Show', @post_location, class: "post_location_#{@post_location.id}" %> |
-  		<%= link_to 'Back', post_locations_path, class: "back" %>
-    </div>
+      <div class='my-4'>
+        <h4>投稿編集画面</h4>
+      </div>
+
+        <%= form_with model: @post_location, local:true do |f| %>
+
+          <div class="form-group">
+            <%= f.label :施設・店舗名 %>
+            <%= f.text_field :facility_name, class: 'form-control facility_name' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :紹介文 %>
+            <%= f.text_area :introduction, class: 'form-control introduction' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :画像 %>
+            <%= f.file_field :post_image, accept: "image/*" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :ジャンル %>
+            <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {prompt: '  --  選択してください  --  '} %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :都道府県 %>
+            <%= f.select :prefecture, PostLocation.prefectures.keys , {prompt: '  --  選択してください  --  '}  %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :対象年齢 %>
+            <%= f.select :target_age_id, options_from_collection_for_select(TargetAge.all, :id, :target), {prompt: '  --  選択してください  --  '} %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :ステータス %>
+            <%= f.radio_button :is_active, true %>
+            <%= f.label :status, '公開', value: true %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :status, "非公開", value: false %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "編集", class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
   </div>
 </div>

@@ -2,13 +2,14 @@ class Admin::PostLocationsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @post_locations = PostLocation.where(is_active: "true")#.page(params[:page]).per(8)
+    @post_locations = PostLocation.where(is_active: "true").page(params[:page]).per(8)
   end
 
   def show
     @post_location = PostLocation.find(params[:id])
+    @post_comment = PostComment.new
   end
-  
+
   def edit
     @post_location = PostLocation.find(params[:id])
   end
@@ -22,6 +23,13 @@ class Admin::PostLocationsController < ApplicationController
       render "edit"
       flash[:alert] = "全ての項目を入力してください。"
     end
+  end
+
+  def destroy
+    @post_location = PostLocation.find(params[:id])
+    @post_location.destroy
+    redirect_to post_locations_path(@post_locations)
+    flash[:alert] = "投稿を削除しました。"
   end
 
   private

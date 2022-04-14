@@ -26,17 +26,17 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource) #ログイン後の遷移先指定
-    mypage_path
+    mypage_path(@user)
   end
 
   def after_sign_out_path_for(resource) #ログアウト後の遷移先指定
     root_path
   end
-  
+
   def guest_sign_in #ゲストログイン機能
     user = User.guest
     sign_in user
-    redirect_to user_path(user)
+    redirect_to user_path(@user)
     flash[:notice] =  "ゲストユーザーでログインしました。"
   end
 

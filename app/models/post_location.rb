@@ -18,7 +18,7 @@ class PostLocation < ApplicationRecord
   validates :is_active, presence:true
 
   def favorited_by?(user) #いいねしているかの判定
-   Favorite.where(user_id: user.id).exists?
+   favorites.where(user_id: user.id).exists?
   end
 
   enum prefecture:{
@@ -38,7 +38,7 @@ class PostLocation < ApplicationRecord
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      post_image.attach(io: File.open(file_path), filename: 'default_image.jpg', content_type: 'image/jpeg')
     end
-     post_image.variant(resize_to_limit: [width, height]).processed
+    post_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def self.search_for(content, method) #投稿検索用メソッド

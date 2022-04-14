@@ -1,26 +1,41 @@
 <div class='container px-5 px-sm-0 '>
-  <h4>投稿詳細</h4>
-      <div class="row justify-content-center">
+  <div class='row'>
+    <div class='col-8'>
+      <h4>投稿詳細</h4>
+        <div>
           <%= image_tag @post_location.get_post_image(500,300) %>
-      </div>
-      <div class="row">
-        <div class='col text-center'>
+        </div>
+        <div>
+          <span class=<%= "favorite-" + @post_location.id.to_s %>><%= render "public/favorites/btn", post_location: @post_location %></span>
           <p class="my-2">
-              <strong><span> <%= @post_location.facility_name %></span></strong>
+            施設・店舗名：<span> <%= @post_location.facility_name %></span>
           </p>
           <p>ジャンル：<%= @post_location.genre.name %></p>
           <p>都道府県：<%= @post_location.prefecture %></p>
           <p>対象年齢：<%= @post_location.target_age.target %></p>
           <p>紹介文：<%= @post_location.introduction %></p>
-          <span><%= image_tag @post_location.user.get_profile_image(50,50), class:"rounded-circle"; %> By <%= @post_location.user.name %> | </span>
-          <span><%= link_to "#{@post_location.post_comments.count} コメント", post_location_path(@post_location.id)%> | </span>
-          <span class=<%= "favorite-" + @post_location.id.to_s %>><%= render "public/favorites/btn", post_location: @post_location %></span>
+          <p>投稿日：<%= @post_location.created_at.strftime('%Y/%m/%d') %></p>
+          <div>
+            <%= link_to user_path(@post_location.user.id) do %>
+              <span><%= image_tag @post_location.user.get_profile_image(50,50), class:"rounded-circle mr-2"; %>By <%= @post_location.user.name %></span>
+            <% end %>
+          </div>
           <% if @post_location.user == current_user %>
-          <div class='mt-2'>
+          <div class='mt-5'>
             <a class='mx-2'><%= link_to '編集', edit_post_location_path(@post_location), class: "btn btn-sm btn-success edit_post_location_#{@post_location.id}" %></a>
             <a class='mx-2'><%= link_to '削除', @post_location, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_location_#{@post_location.id}"%></a>
           <% end %>
         </div>
+      </div>
+    </div>
+
+    <div class='col-4'>
+      <h4 class='my-3'>コメント :　<%= @post_location.post_comments.count %> 件</h4>
+      <div class='post_comments'>
+        <%= render "public/post_comments/index", post_location: @post_location %>
+      </div>
+      <div class='post_comment_comment'>
+        <%= render "public/post_comments/form", post_location: @post_location, post_comment: @post_comment %>
       </div>
     </div>
   </div>

@@ -1,11 +1,11 @@
 <% if post_location.favorited_by?(current_user) %>
   <%= link_to post_location_favorites_path(post_location), method: :delete, remote: true do %>
-    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <i class="fas fa-heart"></i>
     <%= post_location.favorites.count %> いいね
   <% end %>
 <% else %>
   <%= link_to post_location_favorites_path(post_location), method: :post, remote: true do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
+    <i class="far fa-heart"></i>
     <%= post_location.favorites.count %> いいね
   <% end %>
 <% end %>

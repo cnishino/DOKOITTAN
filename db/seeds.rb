@@ -32,12 +32,9 @@ Genre.create([
     { target: '中学校以上' },
     ])
 
-  User.create([
   6.times do |n|
     User.create!(
-      email: "test#{n + 1}@test.com",
+      email: "#{n + 1}@#{n + 1}.com",
       name: "テスト花子#{n + 1}",
-      profile_image: File.open('./app/assets/images/test#{n + 1}.jpg')
     )
   end
-  ])

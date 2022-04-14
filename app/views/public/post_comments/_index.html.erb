@@ -1,20 +1,20 @@
-<table>
-  <tbody>
-    <% post_location.post_comments.each do |post_comment| %>
-      <tr>
-        <td>
-          <%= link_to user_path(post_comment.user) do %>
-            <%= image_tag post_comment.user.get_profile_image(100,100) %><br>
-            <%= post_comment.user.name %>
-          <% end %>
-        </td>
-        <td><%= post_comment.comment %></td>
-        <td>
-          <% if post_comment.user == current_user %>
-            <%= link_to "Destroy", post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
-          <% end %>
-        </td>
-      </tr>
+<% post_location.post_comments.each do |post_comment| %>
+<div class='row'>
+  <div class='col'>
+    <p><%= post_comment.comment %></p>
+  </div>
+  <div class='col'>
+    <p>
+      <% if post_comment.user == current_user %>
+        <%= link_to "削除", post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </p>
+  </div>
+  <div class='col'>
+    <%= link_to user_path(post_comment.user) do %>
+      <%= image_tag post_comment.user.get_profile_image(50,50), class:"rounded-circle"; %>By <%= post_comment.user.name %>
     <% end %>
-  </tbody>
-</table>
+    <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+</div>
+<% end %>

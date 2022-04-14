@@ -4,13 +4,12 @@ class Public::PostLocationsController < ApplicationController
 
   def show
     @post_location = PostLocation.find(params[:id])
-
+    @user = @post_location.user
+    @post_comment = PostComment.new
   end
 
   def index
-    @post_locations = PostLocation.where(is_active: "true")#.page(params[:page]).per(8)
-    # @genres = Genre.all
-    # @prefectures = Prefecture.all
+    @post_locations = PostLocation.where(is_active: "true").page(params[:page]).per(8)
   end
 
   def form
@@ -48,7 +47,7 @@ class Public::PostLocationsController < ApplicationController
   def destroy
     @post_location = PostLocation.find(params[:id])
     @post_location.destroy
-    redirect_to post_locations_path
+    redirect_to post_locations_path(@post_locations)
     flash[:alert] = "投稿を削除しました。"
   end
 
