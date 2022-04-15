@@ -41,7 +41,7 @@ class PostLocation < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def self.search_for(content, method) #投稿検索用メソッド
+  def self.search_for(content, method) #投稿キーワード検索用メソッド
     if method == 'perfect'
       PostLocation.where(introduction: content)
     elsif method == 'forward'
@@ -52,4 +52,6 @@ class PostLocation < ApplicationRecord
       PostLocation.where('introduction LIKE ?', '%'+content+'%')
     end
   end
+  
+  
 end
