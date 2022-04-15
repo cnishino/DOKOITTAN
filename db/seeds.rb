@@ -10,31 +10,31 @@ Admin.create!(
   password:111111
 )
 
-Genre.create([
-    { name: '公園' },
-    { name: '神社・お寺' },
-    { name: '川・池'},
-    { name: '海'},
-    { name: '山'},
-    { name: '児童館'},
-    { name: '遊園地・テーマパーク'},
-    { name: '動物園・植物園・博物館'},
-    { name: 'お買い物'},
-    { name: '飲食店'},
-    { name: 'その他'},
-    ])
+# Genre.create([
+#     { name: '公園' },
+#     { name: '神社・お寺' },
+#     { name: '川・池'},
+#     { name: '海'},
+#     { name: '山'},
+#     { name: '児童館'},
+#     { name: '遊園地・テーマパーク'},
+#     { name: '動物園・植物園・博物館'},
+#     { name: 'お買い物'},
+#     { name: '飲食店'},
+#     { name: 'その他'},
+#     ])
 
-  TargetAge.create([
-    { target: '乳児' },
-    { target: '幼児' },
-    { target: '小学校低学年' },
-    { target: '小学校高学年' },
-    { target: '中学校以上' },
-    ])
+#   TargetAge.create([
+#     { target: '乳児' },
+#     { target: '幼児' },
+#     { target: '小学校低学年' },
+#     { target: '小学校高学年' },
+#     { target: '中学校以上' },
+#     ])
 
-  6.times do |n|
-    User.create!(
-      email: "#{n + 1}@#{n + 1}.com",
-      name: "テスト花子#{n + 1}",
-    )
-  end
+#   6.times do |n|
+#     User.create!(
+#       email: "#{n + 1}@#{n + 1}.com",
+#       name: "テスト花子#{n + 1}",
+#     )
+#   end

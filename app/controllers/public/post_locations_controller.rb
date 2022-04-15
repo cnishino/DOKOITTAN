@@ -24,7 +24,7 @@ class Public::PostLocationsController < ApplicationController
       flash[:notice] = "投稿しました。"
     else
       @post_locations = PostLocation.all
-      render 'index'
+      render 'form'
       flash[:alert] = "全ての項目を入力してください。"
     end
   end
