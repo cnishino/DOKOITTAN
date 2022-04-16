@@ -46,10 +46,10 @@ Rails.application.routes.draw do
     get 'top' => 'homes#top', as: 'top'
     get "/search" => "searches#search", as: "search" #検索窓表示
     post "/search" => "searches#search_data", as: "search_data" #検索機能
-    resources :users, only: [:index, :show, :edit, :update] #会員機能
+    resources :users, only: [:index, :show, :edit, :update] #会員管理
     resources :genres, only: [:index, :create, :edit, :update, :destroy] #ジャンル登録
     resources :target_ages, only: [:index, :create, :edit, :update, :destroy] #対象年齢登録
-    resources :post_locations, only: [:index, :destroy] #投稿
+    resources :post_locations, only: [:index, :show, :destroy] #投稿管理
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

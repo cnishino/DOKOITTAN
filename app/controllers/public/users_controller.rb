@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.where.not(is_deleted: "t").where.not(name: "gestuser")
+    @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
   end
 
   def mypage

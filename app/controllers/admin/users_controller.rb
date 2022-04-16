@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.where.not(id: "1")
+    @users = User.where.not(name: "guestuser")
   end
 
   def show
@@ -24,6 +24,7 @@ class Admin::UsersController < ApplicationController
       flash.now[:alert] = "入力内容に誤りがあります。"
     end
   end
+
 
   private
 

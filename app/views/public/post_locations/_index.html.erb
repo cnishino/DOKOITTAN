@@ -14,8 +14,8 @@
           <!--  <%# end %>-->
           <!--</div>-->
           <div class="col mt-1">
-            <span><%= link_to "#{post_location.post_comments.count} コメント", post_location_path(post_location.id) %> | </span>
-            <span class=<%= "favorite-" + post_location.id.to_s %>><%= render "public/favorites/btn", post_location: post_location %></span>
+            <span>コメント: <%= post_location.post_comments.count %> | </span>
+            <span><i class="fas fa-heart"></i>:<%= post_location.favorites.count %></span>
           </div>
         </div>
       <!--</div>-->

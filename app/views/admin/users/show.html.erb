@@ -26,10 +26,10 @@
           <tr>
             <th>会員ステータス</th>
             <th>
-              <% if @user.is_deleted == "f" %>
-               <p class="text-success">有効会員</p>
-              <% else %>
+              <% if @user.is_deleted %>
                <p class="text-secondary">退会</p>
+              <% else %>
+               <p class="text-success">有効会員</p>
               <% end %>
             </th>
           </tr>
@@ -37,8 +37,7 @@
       </div>
       <div class="col-10 my-5 mx-auto">
         <tr class="text-center">
-          <th><%= link_to "編集する", edit_admin_user_path, class: "btn btn-success offset-4" %></th>
-          <th><%= link_to "投稿履歴を見る", admin_post_locations_path, class: "btn btn-primary offset-1" %></th>
+          <th><%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-success offset-4" %></th>
         </tr>
       </div>
     </div>

@@ -18,10 +18,10 @@
         </div>
         <div class="form-group">
           <label for="inputText">会員ステータス</label>
-           <%= f.radio_button :is_deletd, "f" %>
-           <%= f.label :会員ステータス, "有効", value: "f" %>
-           <%= f.radio_button :is_deletd, "t" %>
-           <%= f.label :会員ステータス, '退会', value: "t" %>
+           <%= f.radio_button :is_deleted, "false" %>
+           <%= f.label :会員ステータス, "有効", value: "false" %>
+           <%= f.radio_button :is_deleted, "true" %>
+           <%= f.label :会員ステータス, '退会', value: "true" %>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary">変更内容を保存</button>

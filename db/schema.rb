@@ -59,13 +59,6 @@ ActiveRecord::Schema.define(version: 2022_04_13_092410) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "favorits", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_location_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -119,7 +112,7 @@ ActiveRecord::Schema.define(version: 2022_04_13_092410) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "introduction", default: ""
-    t.string "is_deleted", default: "f", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
