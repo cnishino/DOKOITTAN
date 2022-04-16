@@ -1,16 +1,14 @@
 <% post_location.post_comments.each do |post_comment| %>
-<div class='row'>
-  <div class='col text-break '>
+<div class=' justify-content-center text-break '>
     <p><%= post_comment.comment %></p>
-  </div>
-  <div class='col'>
+  <div class=''>
     <p>
       <% if post_comment.user == current_user %>
         <%= link_to "削除", post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
       <% end %>
     </p>
   </div>
-  <div class='col'>
+  <div class=''>
     <%= link_to user_path(post_comment.user) do %>
       <%= image_tag post_comment.user.get_profile_image(50,50), class:"rounded-circle"; %>By <%= post_comment.user.name %>
     <% end %>

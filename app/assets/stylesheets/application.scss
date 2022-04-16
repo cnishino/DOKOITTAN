@@ -25,6 +25,10 @@ body{
     position: relative;/*←相対位置*/
     padding-bottom: 120px;/*←footerの高さ*/
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+    min-width: 100%;
+    background-image: url('Whiteday2020-12.jpg');
+    background-size:contain;
+
 }
 
 footer{
@@ -38,3 +42,10 @@ footer{
   height: 150px;
   object-fit: cover;
 }
+
+.show_image{
+  width: 450px;
+  height: 300px;
+  object-fit: cover;
+}
+

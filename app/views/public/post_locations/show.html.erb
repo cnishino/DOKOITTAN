@@ -1,9 +1,9 @@
-<div class='container px-5 px-sm-0 '>
+<div class='container d-inline-flex px-5 px-sm-0 '>
   <div class='row'>
-    <div class='col-7'>
+    <div class='col-7 mr-2'>
       <h4>投稿詳細</h4>
         <div>
-          <%= image_tag @post_location.get_post_image(500,300) %>
+          <%= image_tag @post_location.get_post_image(500,300), class:"show_image"; %>
         </div>
         <div>
           <span class=<%= "favorite-" + @post_location.id.to_s %>><%= render "public/favorites/btn", post_location: @post_location %></span>

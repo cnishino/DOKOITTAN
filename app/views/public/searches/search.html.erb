@@ -5,7 +5,7 @@
         	<h4>会員検索： "<%= @content %>"</h4>
         </div>
 
-        	<% if @records.count == 0 %>
+        	<% if @records.size == 0 %>
           	<div class='row'>
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
@@ -18,12 +18,24 @@
         	<h4>投稿検索： "<%= @content %>"</h4>
         </div>
 
-        	<% if @records = "" %>
+        	<% if @records.size == 0 %>
           	<div class='row'>
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/post_location/index', post_locations: @records %>
+            <%= render 'public/post_locations/index', post_locations: @records %>
+          <% end %>
+
+      <% else %>
+      	<div class='row'>
+        	<h4>投稿検索： "<%= @content %>"</h4>
+        </div>
+        	<% if @records.size == 0 %>
+          	<div class='row'>
+            	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
+            </div>
+        	<% else %>
+            <%= render 'public/post_locations/index', post_locations: @records %>
           <% end %>
 
       <% end %>

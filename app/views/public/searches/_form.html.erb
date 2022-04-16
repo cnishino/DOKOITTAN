@@ -1,12 +1,19 @@
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {prompt: '  --  選択してください  --  '} %>
-    <%= f.select :prefecture, PostLocation.prefectures.keys , {prompt: '  --  選択してください  --  '}  %>
-  <% end %>
-  <% if user_signed_in? %>
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :content %>
-    <%= f.select :model, options_for_select({ "会員" => "user", "投稿" => "post_location" }) %>
-    <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
-    <%= f.submit '検索' %>
-  <% end %>
+<% if user_signed_in? %>
+<div class='col'>
+  <p>投稿ジャンル・地域　絞り込み検索：</p>
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {prompt: '  --  選択してください  --  '} %>
+      <%= f.select :prefecture, PostLocation.prefectures.keys , {prompt: '  --  選択してください  --  '}  %>
+      <%= f.submit '検索' %>
+    <% end %>
+</div>
+<div class='col'>
+  <p>キーワード検索:</p>
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :content %>
+      <%= f.select :model, options_for_select({ "会員" => "user", "投稿" => "post_location" }) %>
+      <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
+      <%= f.submit '検索' %>
+    <% end %>
+</div>
 <% end %>

@@ -1,10 +1,10 @@
 <header>
 <!--会員ログイン時の表示-->
 <% if user_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-warning bg-warning text-info">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
     <div class="container">
-      <a class="navbar-brand p-2 text-info" href="/"><%= image_tag('logo.png') %></a>
-      <a class="text-center bg-warning text-info">ようこそ、<%= current_user.name %>さん!</a>
+      <a class="navbar-brand p-2 text-light" href="/"><%= image_tag('logo.png') %></a>
+      <a class="text-center bg-dark text-light">ようこそ、<%= current_user.name %>さん!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,27 +12,27 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <%= link_to user_path(current_user.id) , class: 'nav-link text-info' do %>
+              <%= link_to user_path(current_user.id) , class: 'nav-link text-light' do %>
                 <i class="fas fa-user"></i>mypage
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to post_location_form_path, class: 'nav-link text-info' do %>
+              <%= link_to post_location_form_path, class: 'nav-link text-light' do %>
                 <i class="fas fa-plus-circle"></i>post
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to users_path , class: 'nav-link text-info' do %>
+              <%= link_to users_path , class: 'nav-link text-light' do %>
                 <i class="fas fa-users"></i>users
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to post_locations_path , class: 'nav-link text-info' do %>
+              <%= link_to post_locations_path , class: 'nav-link text-light' do %>
                 <i class="far fa-images"></i>locations
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-info' do %>
+              <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-light' do %>
                 <i class="fas fa-sign-out-alt"></i>sign_out
               <% end %>
             </li>
@@ -43,7 +43,7 @@
 
 <!--管理者ログイン時の表示-->
 <% elsif admin_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-info bg-info text-warning">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-warning">
     <div class="container">
       <a class="navbar-brand p-2 text-warning" href="/">DOKOITTAN</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
@@ -82,9 +82,9 @@
       </div>
     </nav>
   <% else %>
-    <nav class="navbar navbar-expand-lg navbar-warning bg-warning text-info">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
       <div class="container">
-        <a class="navbar-brand p-2 text-info" href="/">DOKOITTAN</a>
+        <a class="navbar-brand p-2 text-light" href="/">DOKOITTAN</a>
         </div>
       </div>
     </nav>

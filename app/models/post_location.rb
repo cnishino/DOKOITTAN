@@ -52,6 +52,16 @@ class PostLocation < ApplicationRecord
       PostLocation.where('introduction LIKE ?', '%'+content+'%')
     end
   end
-  
-  
+
+  def self.search_tag(genre_id,prefecture) #ジャンル・地域絞り込み検索用メソッド
+    if prefecture.present? && genre_id.present? #
+      PostLocation.where(prefecture: prefecture).where(genre_id: genre_id)
+    elsif prefecture.present? && genre_id.empty?
+      PostLocation.where(prefecture: prefecture)
+    elsif genre_id.present? && prefecture.empty?
+      PostLocation.where(genre_id: genre_id)
+    else
+      []
+    end
+  end
 end

@@ -8,6 +8,7 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @favorites = Favorite.where(user_id: current_user.id)
     @post_locations = @user.post_locations.all
   end
 

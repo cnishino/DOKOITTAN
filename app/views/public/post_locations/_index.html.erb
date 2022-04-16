@@ -1,20 +1,19 @@
   <!--<div class="card-deck">-->
-  	<div class="row justify-content-center">
+  	<div class="row d-inline-flex">
     <% post_locations.each do |post_location| %>
     	<!--<div class="col-sm-4">-->
-        <div class="col" >
+        <div class="col mt-3" >
           <!--<div class="d-flex justify-content-center mt-2">-->
             <%= link_to post_location_path(post_location.id) do %>
               <%= image_tag post_location.get_post_image(100,100), class:"index_image"; %>
             <% end %>
           <!--</div>-->
-          <div class="col mt-3">
-            <%= link_to user_path(post_location.user.id) do %>
-              <span><%= image_tag post_location.user.get_profile_image(50,50), class:"rounded-circle"; %> By <%= post_location.user.name %></span>
-            <% end %>
-            <p class="col">
-              <strong><i class="far fa-flag"></i><span> <%= post_location.facility_name %></span></strong>
-            </p>
+          <!--<div class="col mt-1">-->
+          <!--  <%#= link_to user_path(post_location.user.id) do %>-->
+          <!--    <span><%#= image_tag post_location.user.get_profile_image(50,50), class:"rounded-circle"; %> By <%#= post_location.user.name %></span>-->
+          <!--  <%# end %>-->
+          <!--</div>-->
+          <div class="col mt-1">
             <span><%= link_to "#{post_location.post_comments.count} コメント", post_location_path(post_location.id) %> | </span>
             <span class=<%= "favorite-" + post_location.id.to_s %>><%= render "public/favorites/btn", post_location: post_location %></span>
           </div>

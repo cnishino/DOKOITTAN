@@ -18,6 +18,12 @@
     <th>フォロワー</th>
     <th><%= link_to user.followers.count, user_followers_path(user) %></th>
   </tr>
+<% if user == current_user %>
+  <tr>
+    <th>いいねした投稿数</th>
+    <th><%#= link_to favorite.post_locations.count, user_favorites_path(user) %></th>
+  </tr>
+<% end %>
 </table>
 
 <div class='row'>
@@ -25,7 +31,7 @@
   <%# elsif user.name != "guestuser" %>
     <span class='mx-3'><%= render "public/relationships/btn", user: user %></span>
   <% else %>
-    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+    <%= link_to edit_user_path(user), class: "btn btn-light btn-block edit_user_#{user.id}" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
   <% end %>
