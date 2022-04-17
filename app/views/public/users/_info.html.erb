@@ -21,7 +21,7 @@
 <% if user == current_user %>
   <tr>
     <th>いいねした投稿数</th>
-    <th><%#= link_to favorite.post_locations.count, user_favorites_path(user) %></th>
+    <th><%= link_to favorites.post_locations.count, post_location_favorites_path %></th>
   </tr>
 <% end %>
 </table>

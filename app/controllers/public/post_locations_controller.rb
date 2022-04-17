@@ -12,6 +12,11 @@ class Public::PostLocationsController < ApplicationController
     @post_locations = PostLocation.where(is_active: "true").page(params[:page]).per(8)
   end
 
+  def confirm
+    @user = current_user
+    @drafts = @user.post_locations.where(is_active: "false")
+  end
+
   def form
     @post_location = PostLocation.new
   end
@@ -24,7 +29,7 @@ class Public::PostLocationsController < ApplicationController
       flash[:notice] = "投稿しました。"
     else
       @post_locations = PostLocation.all
-      render 'form'
+      render "form"
       flash[:alert] = "全ての項目を入力してください。"
     end
   end

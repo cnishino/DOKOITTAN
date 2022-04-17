@@ -10,6 +10,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @favorites = Favorite.where(user_id: current_user.id)
     @post_locations = @user.post_locations.all
+    @draft = @user.post_locations.where.not(is_active: "false")
   end
 
   def show

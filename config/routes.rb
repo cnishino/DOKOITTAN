@@ -31,7 +31,11 @@ Rails.application.routes.draw do
 
     resources :post_locations, only: [:index,:show,:edit,:create,:destroy,:update] do #投稿機能
       resources :post_comments, only: [:create, :destroy] #コメント機能
-      resource :favorites, only: [:create,:destroy] #いいね機能
+      resource :favorites, only: [:index, :create,:destroy] #いいね機能
+        collection do
+        get 'confirm'
+
+        end
     end
   end
 

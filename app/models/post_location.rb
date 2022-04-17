@@ -15,12 +15,13 @@ class PostLocation < ApplicationRecord
   validates :target_age_id, presence:true
   validates :introduction, presence:true, length: {maximum: 200}
   validates :post_image, presence:true
-  validates :is_active, presence:true
+  # validates :is_active, presence:true
 
   def favorited_by?(user) #いいねしているかの判定
    favorites.where(user_id: user.id).exists?
   end
 
+#都道府県登録用
   enum prefecture:{
      北海道:0,青森県:1,岩手県:2,宮城県:3,秋田県:4,山形県:5,福島県:6,
      茨城県:7,栃木県:8,群馬県:9,埼玉県:10,千葉県:11,東京都:12,神奈川県:13,
@@ -32,6 +33,7 @@ class PostLocation < ApplicationRecord
      福岡県:39,佐賀県:40,長崎県:41,熊本県:42,大分県:43,宮崎県:44,鹿児島県:45,
      沖縄県:46
    }
+
 
   def get_post_image(width, height) #投稿画像無い時、サイズ指定のためのメソッド
     unless post_image.attached?
