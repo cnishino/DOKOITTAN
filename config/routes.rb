@@ -27,18 +27,20 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create,:destroy] #フォロー・フォロワー機能
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      member do
+      get 'favorites'
+      end
+
     end
 
     resources :post_locations, only: [:index,:show,:edit,:create,:destroy,:update] do #投稿機能
       resources :post_comments, only: [:create, :destroy] #コメント機能
       resource :favorites, only: [:index, :create,:destroy] #いいね機能
-        collection do
-        get 'confirm'
-
-        end
+      collection do
+      get 'confirm'
+      end
     end
-  end
-
+end
 
   # 管理者用
 
@@ -53,7 +55,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] #会員管理
     resources :genres, only: [:index, :create, :edit, :update, :destroy] #ジャンル登録
     resources :target_ages, only: [:index, :create, :edit, :update, :destroy] #対象年齢登録
-    resources :post_locations, only: [:index, :show, :destroy] #投稿管理
+    resources :post_locations, only: [:index, :show, :destroy] do #投稿管理
+      resources :post_comments, only: [:create, :destroy] #コメント機能
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -45,23 +45,23 @@ class PostLocation < ApplicationRecord
 
   def self.search_for(content, method) #投稿キーワード検索用メソッド
     if method == 'perfect'
-      PostLocation.where(introduction: content)
+      PostLocation.where(introduction: content).where(is_active: true)
     elsif method == 'forward'
-      PostLocation.where('introduction LIKE ?', content+'%')
+      PostLocation.where('introduction LIKE ?', content+'%').where(is_active: true)
     elsif method == 'backward'
-      PostLocation.where('introduction LIKE ?', '%'+content)
+      PostLocation.where('introduction LIKE ?', '%'+content).where(is_active: true)
     else
-      PostLocation.where('introduction LIKE ?', '%'+content+'%')
+      PostLocation.where('introduction LIKE ?', '%'+content+'%').where(is_active: true)
     end
   end
 
   def self.search_tag(genre_id,prefecture) #ジャンル・地域絞り込み検索用メソッド
     if prefecture.present? && genre_id.present? #
-      PostLocation.where(prefecture: prefecture).where(genre_id: genre_id)
+      PostLocation.where(prefecture: prefecture).where(genre_id: genre_id).where(is_active: true)
     elsif prefecture.present? && genre_id.empty?
-      PostLocation.where(prefecture: prefecture)
+      PostLocation.where(prefecture: prefecture).where(is_active: true)
     elsif genre_id.present? && prefecture.empty?
-      PostLocation.where(genre_id: genre_id)
+      PostLocation.where(genre_id: genre_id).where(is_active: true)
     else
       []
     end

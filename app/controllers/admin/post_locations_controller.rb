@@ -28,7 +28,7 @@ class Admin::PostLocationsController < ApplicationController
   def destroy
     @post_location = PostLocation.find(params[:id])
     @post_location.destroy
-    redirect_to post_locations_path(@post_locations)
+    redirect_to admin_post_locations_path(@post_locations)
     flash[:alert] = "投稿を削除しました。"
   end
 

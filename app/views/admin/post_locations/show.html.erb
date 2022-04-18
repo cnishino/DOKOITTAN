@@ -1,6 +1,6 @@
-<div class='container d-inline-flex'>
+<div class='container'>
   <div class='row'>
-    <div class='col-7 mr-2'>
+    <div class='col-7'>
       <h4>投稿詳細</h4>
         <div>
           <%= image_tag @post_location.get_post_image(500,300), class:"show_image"; %>
@@ -27,12 +27,9 @@
     </div>
 
     <div class='col-5'>
-      <h4 class='my-3'>コメント :　<%= @post_location.post_comments.count %> 件</h4>
+      <h4 class='comments_count-<%= @post_location.id %> my-3'>コメント数: <%= @post_location.post_comments.count %> </h4>
       <div class='post_comments'>
         <%= render "public/post_comments/index", post_location: @post_location %>
-      </div>
-      <div class='post_comment_comment'>
-        <%= render "public/post_comments/form", post_location: @post_location, post_comment: @post_comment %>
       </div>
     </div>
   </div>

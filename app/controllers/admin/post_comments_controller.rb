@@ -1,6 +1,6 @@
-class Public::PostCommentsController < ApplicationController
-  before_action :authenticate_user!
-  
+class Admin::PostCommentsController < ApplicationController
+  before_action :authenticate_admin!
+
   def create
     post_location = PostLocation.find(params[:post_location_id])
     comment = current_user.post_comments.new(post_comment_params)

@@ -9,13 +9,15 @@ class Public::PostLocationsController < ApplicationController
   end
 
   def index
-    @post_locations = PostLocation.where(is_active: "true").page(params[:page]).per(8)
+    @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
+    @post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(8)
   end
 
   def confirm
     @user = current_user
     @drafts = @user.post_locations.where(is_active: "false")
   end
+
 
   def form
     @post_location = PostLocation.new

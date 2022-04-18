@@ -8,14 +8,21 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @post_locations = @user.post_locations.where(is_active: "true")
     @favorites = Favorite.where(user_id: current_user.id)
-    @post_locations = @user.post_locations.all
-    @draft = @user.post_locations.where.not(is_active: "false")
   end
+
+  def favorites
+    @user = User.find(params[:id])
+    favorites= Favorite.where(user_id: @user.id).pluck(:post_location_id)
+    @favorite_posts = PostLocation.find(favorites)
+  end
+
 
   def show
     @user = User.find(params[:id])
     @post_locations = @user.post_locations.where(is_active: "true")#ステータスが投稿のもののみ表示
+    @favorites = Favorite.where(user_id: current_user.id)
   end
 
   def edit
