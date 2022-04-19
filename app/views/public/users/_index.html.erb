@@ -9,7 +9,7 @@
         <tbody>
           <% users.each do |user| %>
             <tr>
-              <td><%= image_tag user.get_profile_image(50,50), class:"index_profile_image rounded-circle"; %></td>
+              <td><%= image_tag user.get_profile_image, class:"index_profile_image rounded-circle"; %></td>
               <td><%= user.name %></td>
               <td>フォロー数：<%= link_to user.followings.count, user_followings_path(user) %></td>
               <td>フォロワー数：<%= link_to user.followers.count, user_followers_path(user) %></td>

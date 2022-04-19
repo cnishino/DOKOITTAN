@@ -13,15 +13,14 @@ Rails.application.routes.draw do
 
   scope module: "public" do #URLは指定のパス（publicが入らない）,ファイル構成変えない
     root to: 'homes#top'
-    # get 'about' => 'homes#about', as: 'about'
     get  "/users/sign_out" => "sessions#destroy"
     get  "/post_location/form" => "post_locations#form"
     post "/post_location/form" => "post_locations#create"
     get "/mypage" => "users#mypage" #会員情報詳細ページ（マイページ）表示
     get "/users/unsubscribe" => "users#unsubscribe" #退会確認画面の表示
     patch "/users/withdraw" => "users#withdraw" #退会フラグを切り替える
-    get "/search" => "searches#search", as: "search" #検索窓表示
-    post "/search" => "searches#search_data", as: "search_data" #検索機能
+    get "/search" => "searches#search", as: "search" #検索
+    #post "/search" => "searches#search_data", as: "search_data" #検索機能?
 
     resources :users, only: [:index,:show,:edit,:update] do#会員機能
       resource :relationships, only: [:create,:destroy] #フォロー・フォロワー機能

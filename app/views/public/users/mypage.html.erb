@@ -1,10 +1,10 @@
-<div class='container'>
+<div class='container d-inline-flex'>
   <div class='row'>
-    <div class='col-4'>
+    <div class='col-12 col-md-6 mt-4'>
       <h4>マイページ</h4>
         <%= render 'info', user: @user, favorites: @favorites %>
     </div>
-    <div class='col-8'>
+    <div class='col-12 col-md-6 mt-4'>
       <h4>投稿履歴</h4>
         <%= render 'public/post_locations/index', post_locations: @post_locations, user: @user %>
     </div>

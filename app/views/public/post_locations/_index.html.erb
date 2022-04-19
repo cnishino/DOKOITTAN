@@ -1,25 +1,13 @@
-  <!--<div class="card-deck">-->
   	<div class="row d-inline-flex text-center">
     <% post_locations.each do |post_location| %>
-    	<!--<div class="col-sm-4">-->
         <div class="col mt-3" >
-          <!--<div class="d-flex justify-content-center mt-2">-->
             <%= link_to post_location_path(post_location.id) do %>
-              <%= image_tag post_location.get_post_image(100,100), class:"index_image rounded-circle"; %>
+              <%= image_tag post_location.post_image,  class:"index_image"; %>
             <% end %>
-          <!--</div>-->
-          <!--<div class="col mt-1">-->
-          <!--  <%#= link_to user_path(post_location.user.id) do %>-->
-          <!--    <span><%#= image_tag post_location.user.get_profile_image(50,50), class:"rounded-circle"; %> By <%#= post_location.user.name %></span>-->
-          <!--  <%# end %>-->
-          <!--</div>-->
           <div class="col mt-1">
             <span>コメント: <%= post_location.post_comments.count %> | </span>
-            <span><i class="fas fa-heart"></i>:<%= post_location.favorites.count %></span>
+            <span><i class="fas fa-heart favorite_link"></i>:<%= post_location.favorites.count %></span>
           </div>
         </div>
-      <!--</div>-->
     <% end %>
   </div>
-<!--</div>-->
-

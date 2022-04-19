@@ -1,19 +1,19 @@
 <% post_location.post_comments.each do |post_comment| %>
-<div class=' justify-content-center text-break '>
-    <%= post_comment.comment %>
-  <span>
+<div class='row justify-content-center text-break '>
+  <div class="col-6"><%= post_comment.comment %></div>
+  <div class="col-2">
       <% if post_comment.user == current_user %>
         <%= link_to "削除", post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
       <% elsif current_admin.present? %>
         <%= link_to "削除", admin_post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
       <% else %>
       <% end %>
-  </span>
-  <span>
+  </div>
+  <div class="col-4">
     <%= link_to user_path(post_comment.user) do %>
-      <%= image_tag post_comment.user.get_profile_image(50,50), class:"index_profile_image rounded-circle"; %>By <%= post_comment.user.name %>
+      <%= image_tag post_comment.user.get_profile_image, class:"index_profile_image rounded-circle"; %>By <%= post_comment.user.name %>
     <% end %>
     <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-  </span>
+  </div>
 </div>
 <% end %>

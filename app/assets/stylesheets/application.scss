@@ -13,16 +13,19 @@
  *= require_tree .
  *= require_self
  */
-
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-@import url(
-  "https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
-);
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&family=Ubuntu&family=Yomogi&family=Zen+Kurenaido&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&family=Ubuntu&family=Yomogi&display=swap');
 
 header{
-  font-family: "Ubuntu", sans-serif;
-  // font-family: "Montserrat", sans-serif;
+  font-family: 'Yomogi', cursive;
+
 }
+
+.font{
+  font-family: 'Yomogi', cursive;
+
+}
+
 
 body{
     min-height: 100vh;/*←最小高さ100％*/
@@ -33,19 +36,23 @@ body{
     background-image: url('Whiteday2020-12-2.jpg');
     background-size:cover;
     background-position: center;
-    font-family: "Ubuntu", sans-serif;
+
 }
 
 footer{
     width: 100%;
     position: absolute;/*←絶対位置*/
     bottom: 0; /*下に固定*/
-    font-family: "Ubuntu", sans-serif;
+    // font-family: "Ubuntu", sans-serif;
+    font-family: 'Yomogi', cursive;
+
 }
 
 .index_image{
+  // desplay: block;
   width: 150px;
   height: 150px;
+  border-radius: 50%;
   object-fit: cover;
 }
 
@@ -71,3 +78,4 @@ footer{
     text-decoration: none;
     color: #e54747 !important;
 }
+

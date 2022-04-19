@@ -1,90 +1,30 @@
 <footer>
 <!--会員ログイン時のリンク表示 -->
 <% if user_signed_in? %>
-  <!--<nav class="navbar navbar-expand-lg navbar-warning bg-warning text-info">-->
     <div class="container">
       <div class="row">
         <div class="col-12">
-      <!--<ul class="navbar-nav ml-auto">-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to user_path(current_user.id) , class: 'nav-link text-warning' do %>-->
-      <!--      <i class="fas fa-user"></i>-->
-      <!--    <%# end %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to post_locations_path, class: 'nav-link text-warning' do %>-->
-      <!--      <i class="fas fa-plus-circle"></i>-->
-      <!--    <%# end %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to users_path , class: 'nav-link text-warning' do %>-->
-      <!--      <i class="fas fa-users"></i>-->
-      <!--    <%# end %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to post_locations_path , class: 'nav-link text-warning' do %>-->
-      <!--      <i class="far fa-images"></i>-->
-      <!--    <%# end %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-dark' do %>-->
-      <!--      <i class="fas fa-sign-out-alt"></i>-->
-      <!--    <%# end %>-->
-      <!--  </li>-->
-      <!--</ul>-->
-       <p class="fixed-bottom text-center text-light mb-auto p-2">DWC.2022.02<%= link_to "管理者", admin_session_path, class: "text-dark text-decoration-none" %></p>
+       <p class="fixed-bottom text-center text-dark mb-auto p-2">DWC.2022.02<%= link_to "管理者", admin_session_path, class: "text-light text-decoration-none" %></p>
       </div>
      </div>
     </div>
-  <!--</nav>-->
 
 <!--管理者ログイン時のリンク表示 -->
 <% elsif admin_signed_in? %>
-    <!--<nav class="navbar navbar-expand-lg navbar-info bg-info text-warning">-->
       <div class="container">
         <div class="row">
           <div class="col-12">
-           <p class="fixed-bottom text-center text-warning mb-auto p-2">DWC.2022.02</p>
-        <!--<ul class="navbar-nav ml-auto">-->
-        <!--  <li class="nav-item">-->
-        <!--    <%#= link_to admin_users_path , class: 'nav-link text-info' do %>-->
-        <!--      <i class="fas fa-users"></i>-->
-        <!--    <%# end %>-->
-        <!--  </li>-->
-        <!--  <li class="nav-item">-->
-        <!--    <%#= link_to admin_post_locations_path , class: 'nav-link text-info' do %>-->
-        <!--      <i class="far fa-images"></i>-->
-        <!--    <%# end %>-->
-        <!--  </li>-->
-        <!--  <li class="nav-item">-->
-        <!--    <%#= link_to admin_genres_path , class: 'nav-link text-info' do %>-->
-        <!--      <i class="fas fa-plus"></i>-->
-        <!--    <%# end %>-->
-        <!--  </li>-->
-        <!--  <li class="nav-item">-->
-        <!--    <%#= link_to admin_prefectures_path , class: 'nav-link text-info' do %>-->
-        <!--      <i class="fas fa-plus"></i>-->
-        <!--    <%# end %>-->
-        <!--  </li>-->
-        <!--  <li class="nav-item">-->
-        <!--    <%#= link_to destroy_admin_session_path, method: :delete , class: 'nav-link text-info' do %>-->
-        <!--      <i class="fas fa-sign-out-alt"></i>-->
-        <!--    <%# end %>-->
-        <!--  </li>-->
-        <!--</ul>-->
+           <p class="fixed-bottom text-center text-light mb-auto p-2">DWC.2022.02</p>
       </div>
     </div>
   </div>
-    <!--</nav>-->
 <% else %>
-  <!--<nav class="navbar navbar-expand-lg navbar-info bg-warning text-info">-->
     <div class="container">
       <div class="row">
         <div class="col-12">
-         <p class="fixed-bottom text-center text-light mb-auto p-2">DWC.2022.02<%= link_to "管理者", admin_session_path, class: "text-light text-decoration-none" %></p>
+         <p class="fixed-bottom text-center text-dark mb-auto p-2">DWC.2022.02<%= link_to "管理者", admin_session_path, class: "text-light text-decoration-none" %></p>
         </div>
       </div>
     </div>
-  <!--</nav>-->
 <% end %>
 </footer>
