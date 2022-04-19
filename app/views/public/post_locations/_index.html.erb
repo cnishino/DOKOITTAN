@@ -1,11 +1,11 @@
   <!--<div class="card-deck">-->
-  	<div class="row d-inline-flex">
+  	<div class="row d-inline-flex text-center">
     <% post_locations.each do |post_location| %>
     	<!--<div class="col-sm-4">-->
         <div class="col mt-3" >
           <!--<div class="d-flex justify-content-center mt-2">-->
             <%= link_to post_location_path(post_location.id) do %>
-              <%= image_tag post_location.get_post_image(100,100), class:"index_image"; %>
+              <%= image_tag post_location.get_post_image(100,100), class:"index_image rounded-circle"; %>
             <% end %>
           <!--</div>-->
           <!--<div class="col mt-1">-->

@@ -1,43 +1,43 @@
 <header>
 <!--会員ログイン時の表示-->
 <% if user_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+  <nav class="navbar navbar-expand-lg text-dark">
     <div class="container">
-      <a class="navbar-brand p-2 justify-content-start" href="/"><%= image_tag('logo (4).png') %></a>
-      <a class="text-center bg-dark text-light">ようこそ、<%= current_user.name %>さん!</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
+      <a class="navbar-brand p-2 justify-content-start" href="/"><%= image_tag('logo (7).png') %></a>
+      <a class="text-center text-dark text-decoration-none">ようこそ、<%= current_user.name %>さん!</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse text-dark navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item text-center">
-              <%= link_to user_path(current_user.id) , class: 'nav-link text-light' do %>
+              <%= link_to user_path(current_user.id) , class: 'nav-link text-dark' do %>
                 <i class="fas fa-user"></i><div>マイページ</div>
               <% end %>
             </li>
             <li class="nav-item text-center">
-              <%= link_to confirm_post_locations_path , class: 'nav-link text-light' do %>
+              <%= link_to confirm_post_locations_path , class: 'nav-link text-dark' do %>
                 <i class="fas fa-pencil-ruler"></i><div>下書き一覧</div>
               <% end %>
             </li>
             <li class="nav-item text-center">
-              <%= link_to post_location_form_path, class: 'nav-link text-light' do %>
+              <%= link_to post_location_form_path, class: 'nav-link text-dark' do %>
                 <i class="fas fa-plus-circle"></i><div>投稿</div>
               <% end %>
             </li>
             <li class="nav-item text-center">
-              <%= link_to users_path , class: 'nav-link text-light' do %>
+              <%= link_to users_path , class: 'nav-link text-dark' do %>
                 <i class="fas fa-users"></i><div>会員一覧</div>
               <% end %>
             </li>
             <li class="nav-item text-center">
-              <%= link_to post_locations_path , class: 'nav-link text-light' do %>
+              <%= link_to post_locations_path , class: 'nav-link text-dark' do %>
                 <i class="far fa-images"></i><div>投稿一覧</div>
               <% end %>
             </li>
             <li class="nav-item text-center">
-              <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-light' do %>
+              <%= link_to destroy_user_session_path, method: :delete , class: 'nav-link text-dark' do %>
                 <i class="fas fa-sign-out-alt"></i><div>ログアウト</div>
               <% end %>
             </li>
@@ -50,8 +50,8 @@
 <% elsif admin_signed_in? %>
   <nav class="navbar navbar-expand-lg navbar-light bg-light text-warning">
     <div class="container">
-      <a class="navbar-brand p-2 text-warning" href="/"><%= image_tag('logo (5).png') %></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown"
+      <a class="navbar-brand p-2 text-warning" href="/"><%= image_tag('logo (7).png') %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -87,9 +87,9 @@
       </div>
     </nav>
   <% else %>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-dark">
       <div class="container">
-        <a class="navbar-brand p-2 text-light" href="/"><%= image_tag('logo (4).png') %></a>
+        <a class="navbar-brand p-2 text-dark" href="/"><%= image_tag('logo (7).png') %></a>
         </div>
       </div>
     </nav>
