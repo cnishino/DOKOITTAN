@@ -10,8 +10,9 @@
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/users/index', users: @records %>
+            <%= render 'public/users/search_index', users: @records %>
           <% end %>
+
 <!--投稿のキーワード検索の時↓-->
       <% elsif @model == 'post_location' %>
       	<div class='row'>
@@ -23,8 +24,9 @@
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/post_locations/index', post_locations: @records %>
+            <%= render 'public/post_locations/search_index', post_locations: @records %>
           <% end %>
+
 <!--投稿の絞り込み検索の時↓-->
       <% else %>
       	<div class='row'>
@@ -35,7 +37,7 @@
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/post_locations/index', post_locations: @records %>
+            <%= render 'public/post_locations/search_index', post_locations: @records %>
           <% end %>
 
       <% end %>

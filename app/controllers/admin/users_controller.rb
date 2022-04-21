@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.where.not(name: "guestuser")
+    @users = User.page(params[:page]).per(12).where.not(name: "guestuser")#ゲストユーザー以外表示
   end
 
   def show

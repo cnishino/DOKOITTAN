@@ -1,33 +1,38 @@
-      <table class='table'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>名前</th>
-            <th colspan="4"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% users.each do |user| %>
-            <tr>
-              <td><%= image_tag user.get_profile_image, class:"index_profile_image rounded-circle"; %></td>
-              <td><%= user.name %></td>
-              <td>フォロー数：<%= link_to user.followings.count, user_followings_path(user) %></td>
-              <td>フォロワー数：<%= link_to user.followers.count, user_followers_path(user) %></td>
-              <td>
-              <% if user != current_user %>
-                <% if current_user.following?(user) %>
-                  <%=link_to user_relationships_path(user.id), method: :delete do %>
-                    <button type="button" class="btn btn-light text-info">フォロー外す</button>
-                  <% end %>
-                <% else %>
-                  <%=link_to user_relationships_path(user.id), method: :post do %>
-                    <button type="button" class="btn btn-info">フォローする</button>
-                  <% end %>
-                <% end %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>名前</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image, class:"index_profile_image rounded-circle"; %></td>
+          <td><%= user.name %></td>
+          <td>フォロー数：<%= link_to user.followings.count, user_followings_path(user) %></td>
+          <td>フォロワー数：<%= link_to user.followers.count, user_followers_path(user) %></td>
+          <td>
+          <% if user != current_user %>
+            <% if current_user.following?(user) %>
+              <%=link_to user_relationships_path(user.id), method: :delete do %>
+                <button type="button" class="btn btn-light text-info">フォロー外す</button>
               <% end %>
-              </td>
-              <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-            </tr>
+            <% else %>
+              <%=link_to user_relationships_path(user.id), method: :post do %>
+                <button type="button" class="btn btn-info">フォローする</button>
+              <% end %>
+            <% end %>
           <% end %>
-        </tbody>
-      </table>
+          </td>
+          <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="mx-auto mt-3">
+      <%= paginate @users %>
+    </div>
+  </div>

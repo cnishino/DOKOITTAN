@@ -12,9 +12,10 @@ class Admin::TargetAgesController < ApplicationController
       redirect_to admin_target_ages_path(@target_age.id)
       flash[:notice] = "新しい対象年齢を登録しました。"
     else
+      @target_age = TargetAge.new
       @target_ages = TargetAge.all
+      flash.now[:alert] = " 対象年齢を入力してください。"
       render :index
-      flash[:alert] = " 対象年齢を入力してください。"
     end
   end
 
@@ -28,8 +29,8 @@ class Admin::TargetAgesController < ApplicationController
       flash[:notice] = "対象年齢を編集しました。"
       redirect_to admin_target_ages_path(@target_age.id)
      else
+      flash.now[:alert] = " 対象年齢を入力してください。"
       render :edit
-      flash[:alert] = " 対象年齢を入力してください。"
      end
   end
 

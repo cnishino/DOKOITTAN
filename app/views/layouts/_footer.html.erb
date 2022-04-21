@@ -1,23 +1,10 @@
 <footer>
 <!--会員ログイン時のリンク表示 -->
 <% if user_signed_in? %>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-       <p class="fixed-bottom text-center text-dark mb-auto p-2">DWC.2022.02<%= link_to "管理者", admin_session_path, class: "text-light text-decoration-none" %></p>
-      </div>
-     </div>
-    </div>
 
 <!--管理者ログイン時のリンク表示 -->
 <% elsif admin_signed_in? %>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-           <p class="fixed-bottom text-center text-light mb-auto p-2">DWC.2022.02</p>
-      </div>
-    </div>
-  </div>
+
 <% else %>
     <div class="container">
       <div class="row">
@@ -27,4 +14,5 @@
       </div>
     </div>
 <% end %>
+
 </footer>

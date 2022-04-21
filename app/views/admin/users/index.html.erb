@@ -1,37 +1,20 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-10'>
-      <h2>会員一覧</h2>
-      <table class='table text-center'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>名前</th>
-            <th colspan="2"></th>
-            <th>会員ステータス</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= image_tag user.get_profile_image, class:"index_profile_image rounded-circle"; %></td>
-              <td><%= user.name %></td>
-              <td>フォロー数：<%= user.followings.count %></td>
-              <td>フォロワー数：<%= user.followers.count %></td>
-              <td>
-                <% if user.is_deleted %>
-                 <p class="text-secondary">退会</p>
-                <% else %>
-                 <p class="text-success">有効会員</p>
-                <% end %>
-              </td>
-              <td><%= link_to 'Show', admin_user_path(user.id), class: "user_#{user.id}" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class='container'>
+  <h2 class="my-4">会員一覧</h2>
+  	<div class="row d-inline-flex text-center">
+      <% @users.each do |user| %>
+        <div class="col mt-3" >
+            <%= link_to admin_user_path(user.id) do%>
+              <%= image_tag user.get_profile_image, class:"info_profile_image rounded-circle"; %>
+              <p><%= user.name %></p>
+            <% end %>
+        </div>
+      <% end %>
     </div>
-  </div>
+
+    <div class="row">
+      <div class="mx-auto mt-3">
+        <%= paginate @users %>
+      </div>
+    </div>
 </div>
 

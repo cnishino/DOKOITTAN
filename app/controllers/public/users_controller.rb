@@ -3,12 +3,12 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
+    @users = User.where.not(is_deleted: "true").where.not(name: "guestuser").page(params[:page]).per(6)
   end
 
   def mypage
     @user = current_user
-    @post_locations = @user.post_locations.where(is_active: "true")
+    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(6)
     @favorites = Favorite.where(user_id: current_user.id)
   end
 
@@ -16,12 +16,12 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites= Favorite.where(user_id: @user.id).pluck(:post_location_id)
     @favorite_posts = PostLocation.find(favorites)
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(6)
   end
-
 
   def show
     @user = User.find(params[:id])
-    @post_locations = @user.post_locations.where(is_active: "true")#ステータスが投稿のもののみ表示
+    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(6) #ステータスが投稿のもののみ表示
     @favorites = Favorite.where(user_id: current_user.id)
   end
 
@@ -32,11 +32,11 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to mypage_path
       flash[:notice] = "マイページを編集しました。"
+      redirect_to mypage_path
     else
+      flash.now[:alert] = "名前を入力してください。"
       render :edit
-      flash.now[:alert] = "入力内容に誤りがあります。"
     end
   end
 

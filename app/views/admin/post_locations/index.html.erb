@@ -1,16 +1,21 @@
 <div class='container'>
-  <h4>投稿一覧</h4>
-  	<div class="row  d-inline-flex">
-      <% @post_locations.each do |post_location| %>
+  <h2>投稿一覧</h2>
+  <div class="row d-inline-flex text-center">
+    <% @post_locations.each do |post_location| %>
       <div class="col mt-3" >
-            <%= link_to admin_post_location_path(post_location.id) do %>
-              <%= image_tag post_location.post_image, class:"index_image"; %>
-            <% end %>
-          <div class="col mt-1">
-            <span>コメント: <%= post_location.post_comments.count %> | </span>
-            <span><i class="fas fa-heart"></i><%= post_location.favorites.count %></span>
-          </div>
+        <div>
+        <%= link_to admin_post_location_path(post_location.id) do %>
+          <%= image_tag post_location.post_image, class:"index_image"; %>
+        <% end %>
+        </div>
+        <span>コメント: <%= post_location.post_comments.count %> | </span>
+        <span><i class="fas fa-heart favorite_link"></i><%= post_location.favorites.count %></span>
       </div>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="mx-auto mt-3">
+      <%= paginate @post_locations %>
+    </div>
   </div>
 </div>

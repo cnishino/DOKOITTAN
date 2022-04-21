@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image #アクティブストレージでプロフィール画像表示
 
-  validates :name, length: { maximum: 20 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
   def get_profile_image #プロフィール画像無い時のメソッド

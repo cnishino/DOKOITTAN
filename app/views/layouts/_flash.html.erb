@@ -1,0 +1,6 @@
+<% if flash[:notice] %>
+  <p class="text-success offset-md-1 sm-1"><%= notice %></p>
+<% elsif flash.now[:alert] %>
+  <p class="text-danger offset-md-1 sm-1"><%= alert %></p>
+<% end %>
+        

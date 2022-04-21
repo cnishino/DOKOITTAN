@@ -18,6 +18,10 @@ module Dokoittan
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    #バリデーション日本語化用
+    config.i18n.default_locale = :ja #デフォルトの言語が日本語
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s] #yml ファイルをもとに日本語化を行う
   end
 
 end

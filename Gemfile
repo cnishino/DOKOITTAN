@@ -67,3 +67,5 @@ group :production do
 end
 
 gem "enum_help"
+
+gem 'devise-i18n'

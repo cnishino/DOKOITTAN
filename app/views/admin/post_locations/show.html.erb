@@ -1,12 +1,12 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-7'>
+    <div class='col-12 col-md-7 mt-3'>
       <h4>投稿詳細</h4>
         <div>
           <%= image_tag @post_location.post_image, class:"show_image"; %>
         </div>
         <div>
-          <span><i class="fas fa-heart"></i><%= @post_location.favorites.count %></span>
+          <span><i class="fas fa-heart favorite_link"></i><%= @post_location.favorites.count %>いいね</span>
           <p class="my-2">
             施設・店舗名：<span> <%= @post_location.facility_name %></span>
           </p>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class='col-5'>
+    <div class='col-12 col-md-5 mt-3'>
       <h4 class='comments_count-<%= @post_location.id %> my-3'>コメント数: <%= @post_location.post_comments.count %> </h4>
       <div class='post_comments'>
         <%= render "public/post_comments/index", post_location: @post_location %>

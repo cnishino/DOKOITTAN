@@ -10,14 +10,15 @@ class Public::PostLocationsController < ApplicationController
 
   def index
     @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
-    @post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(8)
+    @post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(6)
   end
 
   def confirm
     @user = current_user
     @drafts = @user.post_locations.where(is_active: "false")
+    @post_locations = @user.post_locations.where(is_active: "false")
+    @drafts = Kaminari.paginate_array(@drafts).page(params[:page]).per(6)
   end
-
 
   def form
     @post_location = PostLocation.new
@@ -27,12 +28,17 @@ class Public::PostLocationsController < ApplicationController
     @post_location = PostLocation.new(post_location_params)
     @post_location.user_id = current_user.id
     if @post_location.save
-      redirect_to post_location_path(@post_location)
-      flash[:notice] = "投稿しました。"
+      if @post_location.is_active == true
+        flash[:notice] = "投稿しました。"
+        redirect_to post_location_path(@post_location)
+      else
+        flash[:notice] = "下書きに保存しました。"
+        redirect_to confirm_post_locations_path(@post_location)
+      end
     else
       @post_locations = PostLocation.all
-      render "form"
-      flash[:alert] = "全ての項目を入力してください。"
+      flash.now[:alert] = "全ての項目を入力してください。"
+      render "public/post_locations/form"
     end
   end
 
@@ -43,11 +49,17 @@ class Public::PostLocationsController < ApplicationController
   def update
     @post_location = PostLocation.find(params[:id])
     if @post_location.update(post_location_params)
-      redirect_to post_location_path(@post_location)
-      flash[:notice] = "投稿を編集しました。"
+      if @post_location.is_active == true
+        flash[:notice] = "投稿を編集しました。"
+        redirect_to post_location_path(@post_location)
+      else
+        flash[:notice] = "投稿を下書きに保存しました。"
+        redirect_to confirm_post_locations_path(@post_location)
+      end
     else
-      render "edit"
-      flash[:alert] = "全ての項目を入力してください。"
+      flash.now[:alert] = "全ての項目を入力してください。"
+      render "public/post_locations/form"
+
     end
   end
 
@@ -55,8 +67,10 @@ class Public::PostLocationsController < ApplicationController
     @post_location = PostLocation.find(params[:id])
     @post_location.destroy
     redirect_to post_locations_path(@post_locations)
-    flash[:alert] = "投稿を削除しました。"
+    flash.now[:alert] = "投稿を削除しました。"
   end
+
+
 
   private
 

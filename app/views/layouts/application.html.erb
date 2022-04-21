@@ -20,11 +20,9 @@
         <%= render 'public/searches/form' %>
       </div>
 
-      <% if flash[:notice] %>
-        <p class="text-success offset-md-1 sm-1"><%= notice %></p>
-      <% else %>
-        <p class="text-danger offset-md-1 sm-1"><%= alert %></p>
-      <% end %>
+      <div class="flash-message">
+        <%= render 'layouts/flash' %>
+      </div>
 
       <%= yield %>
 
