@@ -12,9 +12,6 @@
 
 ### テーマを選んだ理由
 - 自身と同じように子育てに慌ただしい毎日で、手軽に子供とお出かけを楽しみたいご家庭は多いのではと思い、スマホ一つで手軽に自身の条件に合ったお出かけ場所を検索でき、お出かけした記録を整理・共有できる、このテーマを選びました。
-- また、お出かけした記録を子供と離れて遠くに住む家族や他の人とも共有することで、コミュニケーションのきっかけになればと思い、いいね機能やコメント機能をつけました。</br>
-- 子供とのお出かけをしたいけど、親子で楽しめる場所が分からない、いつも同じ場所に行ってしまいマンネリ化している、などの悩みを解消する一助となればと思い、都道府県別・対象年齢別での検索機能をつけました。</br>
-
 
 ### ターゲットユーザ
 - 子供とお出かけしたはいいが写真を印刷してアルバムに入れて整理することが億劫な人
@@ -35,7 +32,6 @@
 などなど…
 
 ## 設計書
-- 実装機能リスト：https://docs.google.com/spreadsheets/d/1PgBDcBYKykHHZNECClDcwaQ5K8Ctuf7Sy6oG-UxtrUw/edit?usp=sharing</br>
 - ER図：https://drive.google.com/file/d/1KA-VXIoq1rrJI1G9tbf_9ndUlv4ye4wv/view?usp=sharing</br>
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1CECJ7T2r8v0mNgxR0rfo44lzcHhe92S35Yagwsy82EY/edit?usp=sharing</br>
 - アプリケーション詳細設計：https://docs.google.com/spreadsheets/d/1Gnto6s4GqhBQutShR1epY80wcxVzamZJWzEkYt4eNo8/edit?usp=sharing
