@@ -50,14 +50,18 @@ class User < ApplicationRecord
 
   def self.search_for(content, method) #会員検索用メソッド
     if method == 'perfect'
-      User.where(name: content)
+      User.where(name: content).where(is_deleted: false)
     elsif method == 'forward'
-      User.where('name LIKE ?', content + '%')
+      User.where('name LIKE ?', content + '%').where(is_deleted: false)
     elsif method == 'backward'
-      User.where('name LIKE ?', '%' + content)
+      User.where('name LIKE ?', '%' + content).where(is_deleted: false)
     else
-      User.where('name LIKE ?', '%' + content + '%')
+      User.where('name LIKE ?', '%' + content + '%').where(is_deleted: false)
     end
+  end
+
+  def name
+    is_deleted ? "退会済み会員" : self[:name]
   end
 
 end

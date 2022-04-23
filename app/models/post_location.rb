@@ -45,23 +45,23 @@ class PostLocation < ApplicationRecord
 
   def self.search_for(content, method) #投稿キーワード検索用メソッド
     if method == 'perfect'
-      PostLocation.where(introduction: content).where(is_active: true)
+      PostLocation.joins(:user).where(introduction: content).where(is_active: true).where(users: {is_deleted: false})
     elsif method == 'forward'
-      PostLocation.where('introduction LIKE ?', content+'%').where(is_active: true)
+      PostLocation.joins(:user).where('introduction LIKE ?', content+'%').where(is_active: true).where(users: {is_deleted: false})
     elsif method == 'backward'
-      PostLocation.where('introduction LIKE ?', '%'+content).where(is_active: true)
+      PostLocation.joins(:user).where('introduction LIKE ?', '%'+content).where(is_active: true).where(users: {is_deleted: false})
     else
-      PostLocation.where('introduction LIKE ?', '%'+content+'%').where(is_active: true)
+      PostLocation.joins(:user).where('introduction LIKE ?', '%'+content+'%').where(is_active: true).where(users: {is_deleted: false})
     end
   end
 
   def self.search_tag(genre_id,prefecture) #ジャンル・地域絞り込み検索用メソッド
     if prefecture.present? && genre_id.present? #
-      PostLocation.where(prefecture: prefecture).where(genre_id: genre_id).where(is_active: true)
+      PostLocation.joins(:user).where(prefecture: prefecture).where(genre_id: genre_id).where(is_active: true).where(users: {is_deleted: false})
     elsif prefecture.present? && genre_id.empty?
-      PostLocation.where(prefecture: prefecture).where(is_active: true)
+      PostLocation.joins(:user).where(prefecture: prefecture).where(is_active: true).where(users: {is_deleted: false})
     elsif genre_id.present? && prefecture.empty?
-      PostLocation.where(genre_id: genre_id).where(is_active: true)
+      PostLocation.joins(:user).where(genre_id: genre_id).where(is_active: true).where(users: {is_deleted: false})
     else
       []
     end
