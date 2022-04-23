@@ -60,7 +60,7 @@ class User < ApplicationRecord
     end
   end
 
-  def name
+  def name #退会した会員の名前を退会済み会員で表示する
     is_deleted ? "退会済み会員" : self[:name]
   end
 

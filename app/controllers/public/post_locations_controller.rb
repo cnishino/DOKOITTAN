@@ -4,20 +4,22 @@ class Public::PostLocationsController < ApplicationController
 
   def show
     @post_location = PostLocation.find(params[:id])
+    # @post_location_comments = PostComment.where(post_location_id: params[:id]).includes(:user).order(created_at: "DESC")
+    @post_location_comments = @post_location.post_comments.order(created_at: "DESC").includes(:user)
     @user = @post_location.user
     @post_comment = PostComment.new
   end
 
   def index
     @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
-    @post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(6)
+    @post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(12)
   end
 
   def confirm
     @user = current_user
     @drafts = @user.post_locations.where(is_active: "false")
     @post_locations = @user.post_locations.where(is_active: "false")
-    @drafts = Kaminari.paginate_array(@drafts).page(params[:page]).per(6)
+    @drafts = Kaminari.paginate_array(@drafts).page(params[:page]).per(12)
   end
 
   def form
@@ -67,7 +69,7 @@ class Public::PostLocationsController < ApplicationController
     @post_location = PostLocation.find(params[:id])
     @post_location.destroy
     redirect_to post_locations_path(@post_locations)
-    flash.now[:alert] = "投稿を削除しました。"
+    flash[:alert] = "投稿を削除しました。"
   end
 
 

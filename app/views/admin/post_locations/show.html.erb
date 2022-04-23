@@ -27,9 +27,9 @@
     </div>
 
     <div class='col-12 col-md-5 mt-3'>
-      <h4 class='comments_count-<%= @post_location.id %> my-3'>コメント数: <%= @post_location.post_comments.count %> </h4>
+      <h4 class='comments_count-<%= @post_location.id %> my-3'>コメント数: <%= @post_location_comments.count %> </h4>
       <div class='post_comments'>
-        <%= render "public/post_comments/index", post_location: @post_location %>
+        <%= render "public/post_comments/index", post_location_comments: @post_location_comments %>
       </div>
     </div>
   </div>

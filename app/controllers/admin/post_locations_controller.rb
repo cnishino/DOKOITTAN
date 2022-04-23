@@ -8,6 +8,7 @@ class Admin::PostLocationsController < ApplicationController
   def show
     @post_location = PostLocation.find(params[:id])
     @post_comment = PostComment.new
+    @post_location_comments = @post_location.post_comments.order(created_at: "DESC").includes(:user)
   end
 
   def edit

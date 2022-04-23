@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(6)
+    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(9)
     @favorites = Favorite.where(user_id: current_user.id)
   end
 
@@ -16,13 +16,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites= Favorite.where(user_id: @user.id).pluck(:post_location_id)
     @favorite_posts = PostLocation.find(favorites)
-    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(6)
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
   end
 
   def show
     @user = User.find(params[:id])
-    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(6) #ステータスが投稿のもののみ表示
-    @favorites = Favorite.where(user_id: current_user.id)
+    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(9) #ステータスが投稿のもののみ表示
+    @favorites = Favorite.where(user_id: @user.id)
   end
 
   def edit

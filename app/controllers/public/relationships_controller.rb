@@ -10,17 +10,17 @@ class Public::RelationshipsController < ApplicationController
     current_user.unfollow(params[:user_id])
     redirect_to request.referer
   end
-  
+
   # フォロー一覧
   def followings
     @user = User.find(params[:user_id])
-    @users = @user.followings
+    @users = @user.followings.where.not(is_deleted: "true").where.not(name: "guestuser").page(params[:page]).per(6)
   end
-  
+
   # フォロワー一覧
   def followers
     @user = User.find(params[:user_id])
-    @users = @user.followers
+    @users = @user.followers.where.not(is_deleted: "true").where.not(name: "guestuser").page(params[:page]).per(6)
   end
 
 end

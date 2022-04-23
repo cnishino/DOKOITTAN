@@ -8,9 +8,14 @@ class Admin::PostCommentsController < ApplicationController
     if comment.save
       @post_comment = comment
       @post_location = PostLocation.find(params[:post_location_id])
+      @post_location_comments = @post_location.post_comments.order(created_at: "DESC").includes(:user)
+      flash.now[:notice] = ""
     else
       @post_comment = comment
-      render :error
+      @post_location = PostLocation.find(params[:post_location_id])
+      @post_location_comments = @post_location.post_comments.order(created_at: "DESC").includes(:user)
+      flash.now[:alert] = "コメントを入力してください。"
+      render :create
     end
     # redirect_to request.referer
   end
@@ -18,6 +23,7 @@ class Admin::PostCommentsController < ApplicationController
   def destroy
     PostComment.find_by(id: params[:id], post_location_id: params[:post_location_id]).destroy
     @post_location = PostLocation.find(params[:post_location_id])
+    @post_location_comments = @post_location.post_comments.order(created_at: "DESC").includes(:user)
   # redirect_to request.referer
   end
 

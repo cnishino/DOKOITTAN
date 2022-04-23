@@ -1,11 +1,11 @@
-<% post_location.post_comments.each do |post_comment| %>
+<%  post_location_comments.each do |post_comment| %>
   <div class='row'>
     <div class="col-4  text-break"><%= simple_format(post_comment.comment) %></div>
     <div class="col-3">
       <% if post_comment.user == current_user %>
-        <%= link_to "削除", post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
+        <%= link_to "削除", post_location_post_comment_path(post_comment.post_location_id, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
       <% elsif current_admin.present? %>
-        <%= link_to "削除", admin_post_location_post_comment_path(post_location, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
+        <%= link_to "削除", admin_post_location_post_comment_path(post_comment.post_location_id, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>
       <% else %>
       <% end %>
     </div>
