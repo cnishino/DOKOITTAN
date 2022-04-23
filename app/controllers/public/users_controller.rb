@@ -51,13 +51,15 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会しました。またのご利用をお待ちしております。"
   end
 
+
+
   private
 
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "guestuser"
-      redirect_to user_path(current_user)
-      flash[:notice] = 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+       redirect_to user_path(current_user)
+       flash[:notice] = 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 

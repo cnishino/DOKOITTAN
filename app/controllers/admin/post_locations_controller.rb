@@ -2,7 +2,7 @@ class Admin::PostLocationsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @post_locations = PostLocation.all.page(params[:page]).per(8)
+    @post_locations = PostLocation.all.page(params[:page]).per(12)
   end
 
   def show

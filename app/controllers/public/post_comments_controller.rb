@@ -7,9 +7,9 @@ class Public::PostCommentsController < ApplicationController
     comment.post_location_id = post_location.id
 
     if comment.save
-      flash.now[:alert] = "コメントを入力してください。"
       @post_comment = comment
       @post_location = PostLocation.find(params[:post_location_id])
+      flash.now[:notice] = ""
     else
       @post_comment = comment
       @post_location = PostLocation.find(params[:post_location_id])
