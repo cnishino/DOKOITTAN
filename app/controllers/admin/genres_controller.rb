@@ -3,7 +3,8 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genre = Genre.new
-    @genres = Genre.all.page(params[:page]).per(8)
+    @genres = Genre.all
+    @genres = Kaminari.paginate_array(@genres).page(params[:page]).per(8)
   end
 
   def create
@@ -14,6 +15,7 @@ class Admin::GenresController < ApplicationController
     else
       @genre = Genre.new
       @genres = Genre.all
+      @genres = Kaminari.paginate_array(@genres).page(params[:page]).per(8)
       flash.now[:alert] = " ジャンル名を入力してください。"
       render :index
     end

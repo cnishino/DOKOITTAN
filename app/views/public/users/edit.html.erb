@@ -1,5 +1,5 @@
 <div class='container'>
-  <div class='row'>
+  <div class='row d-flex justify-content-center'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h2>マイページ編集画面</h2>
       <%= form_with model: @user, url: user_path(@user.id), method: :patch, local:true do |f| %>

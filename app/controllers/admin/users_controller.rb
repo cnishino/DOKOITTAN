@@ -17,11 +17,11 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_users_path
       flash[:notice] = "会員情報を編集しました。"
+      redirect_to admin_users_path
     else
+      flash.now[:alert] = "名前を入力してください。"
       render :edit
-      flash.now[:alert] = "入力内容に誤りがあります。"
     end
   end
 
