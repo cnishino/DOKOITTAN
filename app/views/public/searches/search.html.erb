@@ -10,7 +10,7 @@
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/users/search_index', users: @records %>
+            <%= render 'public/users/index', users: @records %>
           <% end %>
 
 <!--投稿のキーワード検索の時↓-->
@@ -19,7 +19,7 @@
         	<h4>投稿検索： "<%= @content %>"</h4>
         </div>
 
-        	<% if @records.size == 0 %>
+        	<% if @records.empty? %>
           	<div class='row'>
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
@@ -32,7 +32,7 @@
       	<div class='row'>
         	<h4>投稿検索： "<%= @content %>"</h4>
         </div>
-        	<% if @records.size == 0 %>
+        	<% if @records.empty? %>
           	<div class='row'>
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>

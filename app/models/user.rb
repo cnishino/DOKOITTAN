@@ -42,7 +42,7 @@ class User < ApplicationRecord
   end
 
   def self.guest #ゲストログイン用
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
@@ -60,7 +60,7 @@ class User < ApplicationRecord
     end
   end
 
-  def name #退会した会員の名前を退会済み会員で表示する
+  def name #退会した会員の名前を退会済み会員にする
     is_deleted ? "退会済み会員" : self[:name]
   end
 

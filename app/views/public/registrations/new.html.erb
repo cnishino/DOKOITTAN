@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row offset-md-2">
+  <div class="row offset-md-3">
     <div class="col-md-6">
-      <h4 class="my-3 text-center">Sign up</h4>
+      <h4 class="my-4 text-center">Sign up</h4>
     </div>
   </div>
 
-  <div class="row offset-md-2">
+  <div class="row offset-md-3">
     <div class="col-md-8 offset-md-2 mx-auto d-block">
         <%= form_with model: @user, url: user_registration_path do |f| %>
           <%= render "public/shared/error_messages", resource: resource %>
@@ -34,7 +34,7 @@
           </div>
 
           <div class="actions">
-            <%= f.submit "Sign up", class: "btn btn-success mt-2"%>
+            <%= f.submit "Sign up", class: "btn btn-success mt-3"%>
           </div>
         <% end %>
         <%= render "public/shared/links" %>

@@ -15,7 +15,6 @@ class PostLocation < ApplicationRecord
   validates :target_age_id, presence:true
   validates :introduction, presence:true, length: {maximum: 200}
   validates :post_image, presence:true
-  # validates :is_active, presence:true
 
   def favorited_by?(user) #いいねしているかの判定
    favorites.where(user_id: user.id).exists?
@@ -45,13 +44,13 @@ class PostLocation < ApplicationRecord
 
   def self.search_for(content, method) #投稿キーワード検索用メソッド
     if method == 'perfect'
-      PostLocation.joins(:user).where(introduction: content).where(is_active: true).where(users: {is_deleted: false})
+      User.joins(:post_locations).where(post_locations: {is_active: true}).where(is_deleted: false).where('post_locations.introduction LIKE ?', content)
     elsif method == 'forward'
-      PostLocation.joins(:user).where('introduction LIKE ?', content+'%').where(is_active: true).where(users: {is_deleted: false})
+      User.joins(:post_locations).where(post_locations: {is_active: true}).where(is_deleted: false).where('post_locations.introduction LIKE ?', content+'%')
     elsif method == 'backward'
-      PostLocation.joins(:user).where('introduction LIKE ?', '%'+content).where(is_active: true).where(users: {is_deleted: false})
+      User.joins(:post_locations).where(post_locations: {is_active: true}).where(is_deleted: false).where('post_locations.introduction LIKE ?', '%'+content)
     else
-      PostLocation.joins(:user).where('introduction LIKE ?', '%'+content+'%').where(is_active: true).where(users: {is_deleted: false})
+      User.joins(:post_locations).where(post_locations: {is_active: true}).where(is_deleted: false).where('post_locations.introduction LIKE ?', '%'+content+'%')
     end
   end
 

@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do #ゲストログイン
-    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+    get 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   scope module: "public" do #URLは指定のパス（publicが入らない）,ファイル構成変えない
     root to: 'homes#top'
-    get  "/users/sign_out" => "sessions#destroy"
+    #delete  "/users/sign_out" => "sessions#destroy"
     get  "/post_location/form" => "post_locations#form"
     post "/post_location/form" => "post_locations#create"
     get "/mypage" => "users#mypage" #会員情報詳細ページ（マイページ）表示

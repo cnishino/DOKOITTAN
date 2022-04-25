@@ -1,11 +1,11 @@
 <div class="container">
-  
+
     <div class="row">
       <div class="col-8 mb-5 offset-1">
         <h5 class="text-center mt-3"><%= @user.name %>さんの会員詳細</h5>
       </div>
     </div>
-    
+
     <div class="row d-flex justify-content-center">
       <div class="col-8 mb-2 mx-auto">
         <table class="table">
@@ -29,7 +29,7 @@
             <th>会員ステータス</th>
             <th>
               <% if @user.is_deleted %>
-               <p class="text-secondary">退会</p>
+               <p class="text-secondary">退会済み会員</p>
               <% else %>
                <p class="text-success">有効会員</p>
               <% end %>

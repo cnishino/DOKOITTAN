@@ -52,7 +52,6 @@ class Public::UsersController < ApplicationController
   end
 
 
-
   private
 
   def ensure_guest_user
