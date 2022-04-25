@@ -1,21 +1,22 @@
 <div class="container">
-  <div class="row">
-    <!--<div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>-->
-    <!--    <h1>welcome to <strong>DOKOITTAN</strong></h1>-->
-    <!--      <p>In <strong>DOKOITTAN</strong>, </p>-->
-    <!--      <p>you can share and exchange  your opinions , inpressions , and emotions</p>-->
-    <!--      <p> about various locations!</p>-->
-    <!--</div>-->
+  <div class="row text-center">
+      <div class='mx-auto col-12 col-sm-12 col-lg-8 col-xl-6 mt-5'>
+          <p>In <strong>DOKOITTAN</strong>, </p>
+          <p>you can share and exchange </p>
+          <p>your opinions, inpressions, </p>
+          <p>and emotions </p>
+          <p>about various locations!</p>
 
-      <div class="btn-wrapper col-6 col-sm-5 col-lg-4 col-xl-3 mx-auto">
-        <div class="row">
-          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-        </div>
-        <div class="row">
-          <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-        </div>
-        <div class="row">
-          <%= link_to 'Sign Up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        <div class="btn-wrapper col-8 mt-5 mx-auto">
+          <div class="row">
+            <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+          </div>
+          <div class="row">
+            <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+          </div>
+          <div class="row">
+            <%= link_to 'Sign Up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+          </div>
         </div>
       </div>
     </div>
