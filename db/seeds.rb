@@ -5,10 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(
-  email: "1@1",
-  password:111111
-)
+# Admin.create!(
+#   email: "1@1",
+#   password:111111
+# )
 
 Genre.create!([
     { name: '公園' },
@@ -32,10 +32,10 @@ Genre.create!([
     { target: '中学校以上' },
     ])
 
-  # 6.times do |n|
-  #   User.create!(
-  #     email: "#{n + 1}@#{n + 1}.com",
-  #     name: "テスト花子#{n + 1}",
-  #   )
-  # end
-
+5.times do |n|
+  User.create!(
+    email: "test#{n + 1}@test",
+    name: "test#{n + 1}",
+    password:"222222"
+  )
+end
