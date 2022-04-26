@@ -24,7 +24,7 @@
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/post_locations/search_index', post_locations: @records %>
+            <%= render 'public/post_locations/search_index', records: @records %>
           <% end %>
 
 <!--投稿の絞り込み検索の時↓-->
@@ -37,7 +37,7 @@
             	<p>検索条件と十分に一致する結果が見つかりませんでした。</p>
             </div>
         	<% else %>
-            <%= render 'public/post_locations/search_index', post_locations: @records %>
+            <%= render 'public/post_locations/search_index', records: @records %>
           <% end %>
 
       <% end %>
