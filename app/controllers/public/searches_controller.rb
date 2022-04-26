@@ -22,8 +22,8 @@ class Public::SearchesController < ApplicationController
 		elsif @model == 'post_location' #投稿のキーワード検索
 			@records = PostLocation.search_for(params[:content], @method).page(params[:page]).per(6)
 		else #会員・投稿どちらも選択していない場合（絞り込み検索）
-			@records = PostLocation.search_tag(params[:genre_id],params[:prefecture])#.page(params[:page]).per(6)
-      @records = Kaminari.paginate_array(@records).page(params[:page]).per(6)
+			@records = PostLocation.search_tag(params[:genre_id],params[:prefecture]).page(params[:page]).per(6)
+      #@records = Kaminari.paginate_array(@records).page(params[:page]).per(6) search_tagの戻り値がarray[]の場合この記述が必要
 		end
 
 	end

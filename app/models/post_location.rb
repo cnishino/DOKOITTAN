@@ -64,7 +64,7 @@ class PostLocation < ApplicationRecord
     elsif genre_id.present? && prefecture.empty?
       PostLocation.joins(:user).where(genre_id: genre_id).where(is_active: true).where(users: {is_deleted: false})
     else
-      []
+      PostLocation.none
     end
   end
 end
