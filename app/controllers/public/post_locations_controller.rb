@@ -11,9 +11,10 @@ class Public::PostLocationsController < ApplicationController
   end
 
   def index
-    # @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
-    # @post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(12)
-    @post_locations = PostLocation.all.page(params[:page]).per(6)
+    @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
+    post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(12)
+    @post_locations = post_locations.order(created_at: "DESC")
+    # @post_locations = PostLocation.all.page(params[:page]).per(6)
   end
 
   def confirm
