@@ -1,5 +1,5 @@
-<div class="jsc">
-<div class="row d-inline-flex text-center">
+<div class="jscroll-div">
+  <div class="row d-inline-flex text-center">
     <% post_locations.each do |post_location| %>
         <div class="col mt-3" >
             <%= link_to post_location_path(post_location.id) do %>
@@ -12,4 +12,12 @@
         </div>
     <% end %>
   </div>
+
+  <div class="row">
+    <div class="mx-auto mt-3">
+      <%= paginate post_locations %>
+    </div>
+  </div>
+</div>
+
 

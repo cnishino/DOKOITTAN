@@ -18,14 +18,11 @@ class Public::SearchesController < ApplicationController
 		@content = params[:model].present? ? params[:content] : content #キーワード検索で会員・投稿の選択をしている時はモデルの情報、ない時はcontentの情報を入れる
 		@method = params[:method]
 		if @model == 'user' #会員のキーワード検索
-			@records = User.search_for(params[:content], @method)
-			@records = Kaminari.paginate_array(@records).page(params[:page]).per(6)
+			@records = User.search_for(params[:content], @method).page(params[:page]).per(6)
 		elsif @model == 'post_location' #投稿のキーワード検索
-			# @records = Kaminari.paginate_array(@records).page(params[:page]).per(6)
-			@records = PostLocation.search_for(params[:content], @method)
+			@records = PostLocation.search_for(params[:content], @method).page(params[:page]).per(6)
 		else #会員・投稿どちらも選択していない場合（絞り込み検索）
-			@records = PostLocation.search_tag(params[:genre_id],params[:prefecture])
-			# @records = Kaminari.paginate_array(@records).page(params[:page]).per(6)
+			@records = PostLocation.search_tag(params[:genre_id],params[:prefecture]).page(params[:page]).per(6)
 		end
 
 	end

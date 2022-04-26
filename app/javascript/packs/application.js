@@ -14,6 +14,9 @@ import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
+// import "../javascript/packs/jquery.jscroll.min.js"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
