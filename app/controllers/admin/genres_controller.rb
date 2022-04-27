@@ -3,8 +3,8 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genre = Genre.new
-    @genres = Genre.all
-    @genres = Kaminari.paginate_array(@genres).page(params[:page]).per(8)
+    @genres = Genre.all.page(params[:page]).per(8)
+    # @genres = Kaminari.paginate_array(@genres).page(params[:page]).per(8)
   end
 
   def create

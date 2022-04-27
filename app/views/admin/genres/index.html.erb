@@ -1,5 +1,4 @@
 <div class="container ">
-
   <div class="row">
     <div class="col-12 col-md-3">
       <h4 class="text-center my-5">ジャンル一覧・追加</h4>
@@ -16,8 +15,9 @@
     </div>
   </div>
 
+  <div class="jscroll-div">
   <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-10">
+    <!--<div class="col-12 col-md-10">-->
       <table class="table col-12 mx-auto">
         <thead>
           <tr>
@@ -25,7 +25,7 @@
             <th></th>
             <th></th>
           </tr>
-        </thead>
+        </thead
         <tbody>
           <% @genres.each do |genre| %>
            <tr  class="text-center">
@@ -41,6 +41,19 @@
           <%= paginate @genres %>
         </div>
       </div>
-     </div>
+     <!--</div>-->
    </div>
+  </div>
 </div>
+
+<script>
+$(document).on('turbolinks:load', function() {
+  console.log('jscroll');
+  $('.jscroll-div').jscroll({
+    contentSelector: '.jscroll-div',
+    nextSelector: '.next a',
+    loadingHtml: '読み込み中',
+    padding: 10
+  });
+});
+</script>
