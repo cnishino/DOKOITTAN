@@ -8,7 +8,8 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(9)
+    post_locations = @user.post_locations.where(is_active: "true")
+    @post_locations = post_locations.order(created_at: "DESC").page(params[:page]).per(9)
     @favorites = Favorite.where(user_id: current_user.id)
   end
 
@@ -21,7 +22,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post_locations = @user.post_locations.where(is_active: "true").page(params[:page]).per(9) #ステータスが投稿のもののみ表示
+    post_locations = @user.post_locations.where(is_active: "true") #ステータスが投稿のもののみ表示
+    @post_locations = post_locations.order(created_at: "DESC").page(params[:page]).per(9)
     @favorites = Favorite.where(user_id: @user.id)
   end
 

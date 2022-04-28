@@ -95,5 +95,15 @@ footer{
 
   .pagination {
     visibility: hidden;
-    visibility: none;
   }
+
+
+@media screen and (max-width: 640px) {
+  .jscroll-div {
+    overflow-x: auto;
+  }
+  .table {
+    min-width: 640px;
+    margin: 0 10px 50px;
+  }
+}
