@@ -26,7 +26,7 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource) #ログイン後の遷移先指定
-    user_path(@user)
+    mypage_path(@user)
   end
 
   def after_sign_out_path_for(resource) #ログアウト後の遷移先指定
