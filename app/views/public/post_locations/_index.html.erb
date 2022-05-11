@@ -9,27 +9,32 @@
             <span>
               コメント:<%= post_location.post_comments.count %>|<i class="fas fa-heart favorite_link"></i>:<%= post_location.favorites.count %>
             </span>
+          <span class=""><div id="star-rate<%= post_location.id %>"> </span>
+            <script>
+              $('#star-rate<%= post_location.id %>').empty();
+              $('#star-rate<%= post_location.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : false,
+                readOnly: true,
+                score: <%= post_location.star %>,
+              });
+            </script>
+            </div>
+            </div>
           </div>
-        </div>
     <% end %>
   </div>
-<!--
-  <div class="row">
-    <div class="mx-auto mt-3">
-    -->
       <%= paginate post_locations %>
-<!--
-    </div>
-  </div>
-  -->
 </div>
-<script>
-$(document).on('turbolinks:load', function() {
-  $('.jscroll-div').jscroll({
-    contentSelector: '.jscroll-div',
-    nextSelector: '.next a',
-    loadingHtml: '読み込み中',
-    padding: 10
+  <script>
+  $(document).on('turbolinks:load', function() {
+    $('.jscroll-div').jscroll({
+      contentSelector: '.jscroll-div',
+      nextSelector: '.next a',
+      loadingHtml: '読み込み中',
+      padding: 10
+    });
   });
-});
-</script>
+  </script>

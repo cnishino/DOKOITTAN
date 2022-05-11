@@ -13,6 +13,19 @@
           <p>ジャンル：<%= @post_location.genre.name %></p>
           <p>都道府県：<%= @post_location.prefecture %></p>
           <p>対象年齢：<%= @post_location.target_age.target %></p>
+          <p>評価：<span id="star-rate<%= @post_location.id %>"></p>
+             <script>
+              $('#star-rate<%= @post_location.id %>').empty();
+              $('#star-rate<%= @post_location.id %>').raty({
+                 size      : 36,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 half      : false,
+                 readOnly: true,
+                 score: <%= @post_location.star %>,
+               });
+             </script>
+             </span>
           <p>紹介文：<%= simple_format(@post_location.introduction) %></p>
           <p>投稿日：<%= @post_location.created_at.strftime('%Y/%m/%d') %></p>
           <div>

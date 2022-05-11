@@ -79,7 +79,7 @@ class Public::PostLocationsController < ApplicationController
   private
 
   def post_location_params
-    params.require(:post_location).permit(:user_id, :genre_id, :prefecture, :facility_name, :target_age_id, :introduction, :post_image, :is_active)
+    params.require(:post_location).permit(:user_id, :genre_id, :prefecture, :facility_name, :target_age_id, :introduction, :post_image, :is_active, :star)
   end
 
   def ensure_correct_user
