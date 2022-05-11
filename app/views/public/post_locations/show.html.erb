@@ -22,7 +22,7 @@
                  starOn    : '<%= asset_path('star-on.png') %>',
                  half      : false,
                  readOnly: true,
-                 score: <%= @post_location.star %>,
+                 score: <%= @post_location.star != nil ? @post_location.star : 0 %>,
                });
              </script>
              </span>

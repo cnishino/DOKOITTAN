@@ -12,18 +12,18 @@
           <span class=""><div id="star-rate<%= post_location.id %>"> </span>
             <script>
               $('#star-rate<%= post_location.id %>').empty();
-              $('#star-rate<%= post_location.id%>').raty({
+              $('#star-rate<%= post_location.id %>').raty({
                 size      : 36,
                 starOff   : '<%= asset_path('star-off.png') %>',
                 starOn    : '<%= asset_path('star-on.png') %>',
                 half      : false,
                 readOnly: true,
-                score: <%= post_location.star %>,
+                score: <%= post_location.star != nil ? post_location.star : 0 %>,
               });
             </script>
             </div>
-            </div>
           </div>
+        </div>
     <% end %>
   </div>
       <%= paginate post_locations %>
