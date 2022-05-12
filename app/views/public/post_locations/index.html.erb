@@ -1,4 +1,10 @@
 <div class='container'>
   <h4>投稿一覧</h4>
+    <p>
+      <%= link_to '新しい順', post_locations_path(latest: "true") %>
+      <%= link_to '古い順', post_locations_path(old: "true") %>
+      <%= link_to '評価の高い順', post_locations_path(star_count: "true") %>
+    </p>
+
     <%= render 'index', post_locations: @post_locations %>
 </div>

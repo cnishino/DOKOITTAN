@@ -16,10 +16,10 @@ module Dokoittan
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Asia/Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    #バリデーション日本語化用
+    #バリデーション・投稿日時の日本語化用
     config.i18n.default_locale = :ja #デフォルトの言語が日本語
     config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s] #yml ファイルをもとに日本語化を行う
   end

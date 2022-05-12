@@ -13,8 +13,15 @@ class Public::PostLocationsController < ApplicationController
   def index
     @users = User.where.not(is_deleted: "true").where.not(name: "guestuser")
     post_locations = PostLocation.where(is_active: "true").where(user_id: @users).page(params[:page]).per(12)
-    @post_locations = post_locations.order(created_at: "DESC")
-    # @post_locations = PostLocation.all.page(params[:page]).per(6)
+   if params[:latest]#投稿日新しい順
+     @post_locations = post_locations.latest
+   elsif params[:old]#投稿日古い順
+     @post_locations = post_locations.old
+   elsif params[:star_count]#星型レビュー（評価）高い順
+     @post_locations = post_locations.star_count
+   else
+     @post_locations = post_locations.all
+   end
   end
 
   def confirm

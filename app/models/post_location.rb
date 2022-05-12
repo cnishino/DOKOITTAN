@@ -21,6 +21,11 @@ class PostLocation < ApplicationRecord
    favorites.where(user_id: user.id).exists?
   end
 
+#一覧画面並び替え用
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(star: :desc)}
+
 #都道府県登録用
   enum prefecture:{
      北海道:0,青森県:1,岩手県:2,宮城県:3,秋田県:4,山形県:5,福島県:6,
