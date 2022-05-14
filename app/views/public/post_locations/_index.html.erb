@@ -9,7 +9,7 @@
             <span>
               コメント:<%= post_location.post_comments.count %>|<i class="fas fa-heart favorite_link"></i>:<%= post_location.favorites.count %>
             </span>
-          <span class=""><div id="star-rate<%= post_location.id %>"> </span>
+          <span class="star"><div id="star-rate<%= post_location.id %>"> </span>
             <script>
               $('#star-rate<%= post_location.id %>').empty();
               $('#star-rate<%= post_location.id %>').raty({
@@ -19,6 +19,7 @@
                 half      : false,
                 readOnly: true,
                 score: <%= post_location.star != nil ? post_location.star : 0 %>,
+                space: false
               });
             </script>
             </div>
