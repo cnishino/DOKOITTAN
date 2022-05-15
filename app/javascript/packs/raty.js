@@ -8,7 +8,6 @@
  * version: 3.1.1
  *
  */
-
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
@@ -78,6 +77,11 @@
         this._executeCallbacks();
         this._adjustNumber();
         this._adjustHints();
+        // this.opt.width = this._getWidth();
+        // for (var i = 0; i < this.self[0].children.length; i++) {
+        //   this.self[0].children[i].width = this._getWidth();
+        //   console.log(this.self[0].children[i]);
+        // }
 
         this.opt.score = this._adjustedScore(this.opt.score);
 
@@ -510,7 +514,8 @@
       // TODO: model spec
       _getWidth: function() {
         var width = this.stars[0].width || parseFloat(this.stars.eq(0).css('font-size'));
-
+        // var width = 15;
+        // console.log("テスト");
         if (!width) {
           this._error('Could not get the icon width!');
         }
