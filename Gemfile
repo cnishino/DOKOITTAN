@@ -69,3 +69,6 @@ end
 gem "enum_help"
 
 gem 'devise-i18n'
+
+gem 'gon' # コントローラーで定義したインスタンス変数をJavaScript内で使用出来るようにする。
+gem 'geocoder' # 住所から緯度経度を算出する。

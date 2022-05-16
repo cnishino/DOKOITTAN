@@ -519,7 +519,6 @@
         if (!width) {
           this._error('Could not get the icon width!');
         }
-
         return width;
       },
 
