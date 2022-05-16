@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2022_05_16_062107) do
     t.string "star"
     t.float "latitude"
     t.float "longitude"
+    t.string "address"
   end
 
   create_table "prefectures", force: :cascade do |t|
