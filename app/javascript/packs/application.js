@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
@@ -16,6 +17,6 @@ window.$ = window.jQuery = require('jquery');
 require('packs/raty')
 
 Rails.start()
-// Turbolinks.start()
+Turbolinks.start()
 ActiveStorage.start()
 
