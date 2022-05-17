@@ -1,4 +1,4 @@
-<div class="jscroll-div">
+<!--<div class="jscroll-div">-->
   <div class="row text-center">
     <% post_locations.each do |post_location| %>
       <div class="col mt-3" >
@@ -28,32 +28,37 @@
       </div>
     <% end %>
   </div>
-  <%= paginate post_locations %>
-</div>
-  <script>
-  $(document).on('turbolinks:load', function() {
-    $('.jscroll-div').jscroll({
-      contentSelector: '.jscroll-div',
-      nextSelector: '.next a',
-      loadingHtml: '読み込み中',
-      padding: 10,
-      loadingFunction: test
-    });
-  });
-  function test ()
-  {
-    setTimeout(function(){
-    console.log("hoge",$('.hoge').length);
-    $('.hoge').each(function(i, elem) {
-      $(elem).empty();
-      $(elem).raty({
-        starOff   : '<%= asset_path('star-off.png') %>',
-        starOn    : '<%= asset_path('star-on.png') %>',
-        half      : false,
-        readOnly: true,
-        score: $(elem).data('data-post_location_star'),
-        space: false
-      });
-    });},100);
-  }
-  </script>
+
+  <div class="row">
+    <div class="mx-auto mt-3">
+      <%= paginate post_locations %>
+    </div>
+  </div>
+
+  <!--<script>-->
+  <!--$(document).on('turbolinks:load', function() {-->
+  <!--  $('.jscroll-div').jscroll({-->
+  <!--    contentSelector: '.jscroll-div',-->
+  <!--    nextSelector: '.next a',-->
+  <!--    loadingHtml: '読み込み中',-->
+  <!--    padding: 10,-->
+  <!--    loadingFunction: test-->
+  <!--  });-->
+  <!--});-->
+  <!--function test ()-->
+  <!--{-->
+  <!--  setTimeout(function(){-->
+  <!--  console.log("hoge",$('.hoge').length);-->
+  <!--  $('.hoge').each(function(i, elem) {-->
+  <!--    $(elem).empty();-->
+  <!--    $(elem).raty({-->
+  <!--      starOff   : '<%#= asset_path('star-off.png') %>',-->
+  <!--      starOn    : '<%#= asset_path('star-on.png') %>',-->
+  <!--      half      : false,-->
+  <!--      readOnly: true,-->
+  <!--      score: $(elem).data('data-post_location_star'),-->
+  <!--      space: false-->
+  <!--    });-->
+  <!--  });},100);-->
+  <!--}-->
+  <!--</script>-->
