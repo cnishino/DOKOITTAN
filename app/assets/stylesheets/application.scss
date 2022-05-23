@@ -56,7 +56,7 @@ footer{
   object-fit: cover;
 }
 
-.show_image{
+.img-fluid{
   width: 500px;
   height: 300px;
   object-fit: cover;
@@ -102,6 +102,12 @@ footer{
     // width: 15px;
     // margin: 5px;
   }
+
+  // .map {
+  //   height: 600px;
+  //   width: 600px;
+  // }
+    // #{id: "map", style: "height: 320px; width: 640px;"}
 
 
 @media screen and (max-width: 640px) {

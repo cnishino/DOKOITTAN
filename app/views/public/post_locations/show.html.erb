@@ -3,7 +3,7 @@
     <div class='col-12 col-md-6 mt-4'>
       <h4>投稿詳細</h4>
         <div>
-          <%= image_tag @post_location.post_image, class:"img_fluid"; %>
+          <%= image_tag @post_location.post_image, class:"img-fluid"; %>
         </div>
         <div>
           <span class=<%= "favorite-" + @post_location.id.to_s %>><%= render "public/favorites/btn", post_location: @post_location %></span>
