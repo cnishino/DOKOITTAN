@@ -32,7 +32,7 @@ Genre.create!([
     { target: '中学校以上' },
     ])
 
-5.times do |n|
+10.times do |n|
   User.create!(
     email: "test#{n + 1}@test",
     name: "test#{n + 1}",

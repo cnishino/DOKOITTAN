@@ -1,10 +1,71 @@
+<% content_for(:body_attributes) do %>
+  data-turbolinks="false"
+<% end %>
+
 <div class='container'>
   <h4>投稿一覧</h4>
-    <p>
-      <%= link_to '新しい順', post_locations_path(latest: "true") %>
-      <%= link_to '古い順', post_locations_path(old: "true") %>
-      <%= link_to '評価の高い順', post_locations_path(star_count: "true") %>
-    </p>
+    <!--<p>-->
+    <!--  <%#= link_to '新しい順', post_locations_path(latest: "true") %>-->
+    <!--  <%#= link_to '古い順', post_locations_path(old: "true") %>-->
+    <!--  <%#= link_to '評価の高い順', post_locations_path(star_count: "true") %>-->
+    <!--</p>-->
 
-    <%= render 'index', post_locations: @post_locations %>
+    <div class="mx-auto" id='map'></div>
+
+    <%#= render 'index', post_locations: @post_locations %>
 </div>
+
+
+<style>
+  #map {
+    height: 600px;
+    width: 600px;
+  }
+</style>
+
+<script>
+    function initMap() {
+
+      //初期表示位置
+      let latlng = new google.maps.LatLng(38.60, 139.5);
+      //デザイン
+      let styles = [
+           {
+            stylers: [
+             { "saturation": 0 },
+             { "lightness": 0 }
+            ]
+           }
+          ];
+
+      let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5.5,
+          styles: styles,
+          center: latlng
+      });
+      let transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      //複数マーカー ここから
+      <% @post_locations.each do |post|%>
+        ( function() {
+          let markerLatLng = new google.maps.LatLng({lat: <%= post.latitude %>, lng: <%= post.longitude %>}); // 緯度経度のデータ作成
+          let marker = new google.maps.Marker({
+            position: markerLatLng,
+            map: map
+          });
+    　　　//マーカーをクリックしたとき、詳細情報を表示
+          let infowindow = new google.maps.InfoWindow({
+            position: markerLatLng,
+            content: "<a href='<%= post_location_url(post.id) %>' target='_blank'><%= post.facility_name %></a>"
+          }); //ここで詳細ページへのリンクを表示させる
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+       })();
+      <% end %>
+      //複数マーカー ここまで
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['YOUR_API_KEY'] %>&callback=initMap" async defer></script>

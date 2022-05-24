@@ -12,7 +12,7 @@
 
           <div class="form-group">
             <%= f.label :画像 %>
-            <%= f.file_field :post_image, accept: "image/*" , class: "w-200" %>
+            <%= f.file_field :post_image, accept: "image/*" , class: "w-50" %>
           </div>
 
           <div class="form-group">
@@ -21,20 +21,15 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :都道府県 %>
-            <%= f.select :prefecture, PostLocation.prefectures.keys , {prompt: '  --  選択してください  --  '}  %>
-          </div>
-
-          <div class="form-group">
             <%= f.label :対象年齢 %>
             <%= f.select :target_age_id, options_from_collection_for_select(TargetAge.all, :id, :target), {prompt: '  --  選択してください  --  '} %>
           </div>
 
-          <div class="form-group" id="star">
-            <%= f.label :star,'評価', class:'col-md-3 col-form-label' %>
-            <%= f.hidden_field :star, id: :review_star %>
+          <div class="form-group">
+            <%= f.label :評価 %>
+            <span id="star"><%#= f.hidden_field :star, id: :review_star %></span>
           </div>
-            <script>
+          <script>
           　$('#star').empty();
             $('#star').raty({
               size     : 36,
@@ -43,7 +38,101 @@
            　　scoreName: 'post_location[star]',
               half: false,
             });
-            </script>
+          </script>
+
+          <div class="form-group">
+            <%= f.label :都道府県 %>
+            <%= f.select :prefecture, PostLocation.prefectures.keys , {prompt: '  --  選択してください  --  '}  %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :住所 %>
+            <%= f.text_field :address, class: 'form-control' %>
+            <p>マーカーをドラック＆ドロップで住所を選択してください。<p>
+            <!--<input id="address" type="textbox" value="東京駅">-->
+            <!--<input type="button" value="Search" onclick="codeAddress()">-->
+          </div>
+
+          <div class="form-group">
+            <div class="map">
+              <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['YOUR_API_KEY'] %>&callback=initMap" async defer></script>
+
+              <div id="display"></div>
+                <div id='map'></div>
+                <style>
+                  #map {
+                  height: 500px;
+                  width: 100%;
+                  }
+                </style>
+
+                <script>
+                  let map
+                  let geocoder
+                  let MarkerArray
+                  const display = document.getElementById('display')
+                  function initMap(){
+                    geocoder = new google.maps.Geocoder()
+                    MarkerArray = new google.maps.MVCArray();
+
+                    map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 35.68123620000001, lng:139.7671248},//マーカー立てる位置指定
+                    zoom: 10,
+                    });
+
+                    // https://orange-factory.com/dnf/googlemap_v3.html
+                    // https://yizm.work/sample_code/javascript/google_map_click_address/
+                    var marker = new google.maps.Marker({
+                  		position: new google.maps.LatLng(35.68123620000001, 139.7671248),//マーカー立てる位置指定
+                  		draggable: true	// ドラッグ可能にする
+                  	});
+                  	marker.setMap(map);
+
+                    google.maps.event.addListener( marker, 'dragend', function(ev){
+                    	// イベントの引数evの、プロパティ.latLngが緯度経度。
+                    	$("#post_latitude").val(ev.latLng.lat());
+                      $("#post_longitude").val(ev.latLng.lng());
+
+                      geocoder.geocode({
+                        latLng: ev.latLng
+                      }, function(results, status) {
+                        var address = results[0].formatted_address.replace(/^日本(、|,)/, '');//resultsの0番目の経度緯度をアドレスf-マットに変更し、日本、，/を無くす（空）にする
+                        $("#post_location_address").val(address.slice(10));//そのアドレスの先頭から10文字カットした（郵便番号消す）ものを♯post_location_addressにいれる
+                      });
+                    });
+
+
+
+                  }
+
+                  // function codeAddress(){
+                  //   let inputAddress = document.getElementById('address').value;
+
+                  //   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+                  //   $("#post_latitude").val(results[0].geometry.location.lat());
+                  //   $("#post_longitude").val(results[0].geometry.location.lng());
+
+                  //   if (status == 'OK') {
+                  //   MarkerArray.forEach(function (marker, idx) { marker.setMap(null); });
+                  //   map.setCenter(results[0].geometry.location);
+
+                  //   var marker = new google.maps.Marker({
+                  //       map: map,
+                  //       draggable: false,
+                  //       position: results[0].geometry.location
+                  //   });
+                  //   MarkerArray.push(marker);
+                  //   display.textContent = "検索結果：" + results[ 0 ].geometry.location
+                  //   } else {
+                  //   alert('該当する結果がありませんでした：' + status);
+                  //   }
+                  //   });
+                  // }
+              </script>
+            </div>
+            <%= f.hidden_field :latitude, id: 'post_latitude' %>
+            <%= f.hidden_field :longitude, id: 'post_longitude' %>
+          </div>
 
           <div class="form-group">
             <%= f.label :投稿ステータス %>

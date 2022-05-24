@@ -61,7 +61,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'kaminari','~> 1.2.1'
 
-gem 'dotenv-rails'
+gem 'dotenv-rails'# APIキーを環境変数化
 group :production do
   gem 'mysql2'
 end
