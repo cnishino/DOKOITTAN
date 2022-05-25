@@ -25,9 +25,9 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
       member do
-      get 'favorites'
+        get 'favorites'
       end
-
+      get "search", to: "users#search"
     end
 
     resources :post_locations, only: [:index,:show,:edit,:create,:destroy,:update] do #投稿機能

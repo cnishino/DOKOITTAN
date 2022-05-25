@@ -53,6 +53,16 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会しました。またのご利用をお待ちしております。"
   end
 
+  def search
+    @user = User.find(params[:user_id])
+    @post_locations = @user.post_locations
+    if params[:created_at] == ""
+      @search_post_location = "日付を選択してください"
+    else
+      create_at = params[:created_at]
+      @search_post_location = @post_locations.where(['created_at LIKE ? ', "#{create_at}%"]).count
+    end
+  end
 
   private
 

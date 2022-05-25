@@ -1,0 +1,17 @@
+<h4>検索結果</h4>
+投稿数: <%= search_post_location %> 件
+
+<div class="row text-center">
+  <% post_locations.each do |post_location| %>
+    <div class="col mt-3" >
+      <%= link_to post_location_path(post_location.id) do %>
+        <%= image_tag post_location.post_image,  class:"index_image"; %>
+      <% end %>
+      <div class="col mt-1">
+        <span>
+          コメント:<%= post_location.post_comments.count %>|<i class="fas fa-heart favorite_link"></i>:<%= post_location.favorites.count %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>

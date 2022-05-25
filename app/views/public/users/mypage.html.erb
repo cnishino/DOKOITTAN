@@ -7,6 +7,20 @@
     <div class='col-12 col-md-6 mt-4'>
       <h4>投稿履歴</h4>
         <%= render 'public/post_locations/index', post_locations: @post_locations, user: @user %>
+
+        <%= form_with model: @user, url: user_search_path(@user), method: :get, local: false do |f| %>
+          <%= f.date_field :created_at %>
+          <%= f.submit '検索', class: 'btn btn-info'  %>
+        <% end %>
+
+        <div id="search_result">
+          <% if @search_post_location.present? %>
+            <%= render 'search', search_post_location: @search_post_location, post_locations: @post_locations %>
+          <% elsif @search_post_location == "0" %>
+            <p>投稿がありませんでした。</p>
+          <% end %>
+        </div>
+
     </div>
   </div>
 </div>
