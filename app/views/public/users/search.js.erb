@@ -1,1 +1,2 @@
-$(".search_result").html("<%= j(render 'search', search_book: @search_book, post_locations: @post_locations) %>");
+$("#search_result").html("<%= j(render 'search', search_post_location: @search_post_location, post_locations: @post_locations) %>");
+history.pushState(null,null,"/mypage/?user%5Bcreated_at%5D=<%= @create_at %>");

@@ -9,8 +9,18 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     post_locations = @user.post_locations.where(is_active: "true")
-    @post_locations = post_locations.order(created_at: "DESC").page(params[:page]).per(9)
     @favorites = Favorite.where(user_id: current_user.id)
+    if params[:user].present? && params[:user][:created_at] != ""
+      @create_at = params[:user][:created_at]
+      @post_locations = @user.post_locations.where(['created_at LIKE ? ', "#{@create_at}%"])
+      # pp @post_locations
+      @search_post_location = @post_locations.count
+    else
+      @post_locations = post_locations.order(created_at: "DESC").page(params[:page]).per(9)
+      @search_post_location = @post_locations.count
+      @create_at = Date.today
+    end
+    pp @create_at
   end
 
   def favorites
@@ -55,12 +65,15 @@ class Public::UsersController < ApplicationController
 
   def search
     @user = User.find(params[:user_id])
-    @post_locations = @user.post_locations
-    if params[:created_at] == ""
+    @post_location = PostLocation.new
+    if params[:user][:created_at] == ""
       @search_post_location = "日付を選択してください"
+      @search_post_location = "0"
     else
-      create_at = params[:created_at]
-      @search_post_location = @post_locations.where(['created_at LIKE ? ', "#{create_at}%"]).count
+      @create_at = params[:user][:created_at]
+      @post_locations = @user.post_locations.where(['created_at LIKE ? ', "#{@create_at}%"])
+      # pp @post_locations
+      @search_post_location = @post_locations.count
     end
   end
 
