@@ -16,6 +16,10 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  #グループ機能
+  has_many :group_users
+  has_many :groups, through: :group_users
+
   has_one_attached :profile_image #アクティブストレージでプロフィール画像表示
 
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
