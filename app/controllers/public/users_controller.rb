@@ -13,14 +13,12 @@ class Public::UsersController < ApplicationController
     if params[:user].present? && params[:user][:created_at] != ""
       @create_at = params[:user][:created_at]
       @post_locations = @user.post_locations.where(['created_at LIKE ? ', "#{@create_at}%"])
-      # pp @post_locations
       @search_post_location = @post_locations.count
     else
       @post_locations = post_locations.order(created_at: "DESC").page(params[:page]).per(9)
       @search_post_location = @post_locations.count
       @create_at = Date.today
     end
-    pp @create_at
   end
 
   def favorites
@@ -72,7 +70,6 @@ class Public::UsersController < ApplicationController
     else
       @create_at = params[:user][:created_at]
       @post_locations = @user.post_locations.where(['created_at LIKE ? ', "#{@create_at}%"])
-      # pp @post_locations
       @search_post_location = @post_locations.count
     end
   end

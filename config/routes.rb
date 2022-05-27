@@ -29,6 +29,8 @@ Rails.application.routes.draw do
       end
       get "search", to: "users#search"
     end
+    
+    resources :groups, except: [:destroy]
 
     resources :post_locations, only: [:index,:show,:edit,:create,:destroy,:update] do #投稿機能
       resources :post_comments, only: [:create, :destroy] #コメント機能
