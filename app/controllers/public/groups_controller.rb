@@ -11,6 +11,12 @@ class GroupsController < ApplicationController
     @post_location = PostLocation.new
     @group = Group.find(params[:id])
   end
+  
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+    redirect_to  groups_path
+  end
 
   def new
     @group = Group.new
@@ -19,6 +25,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    @group.users << current_user
     if @group.save
       redirect_to groups_path
     else
@@ -36,11 +43,17 @@ class GroupsController < ApplicationController
       render "edit"
     end
   end
+  
+  def destroy
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)#current_userは、@group.usersから消される
+    redirect_to groups_path
+  end
 
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :profile_image)
+    params.require(:group).permit(:name, :introduction, :image)
   end
 
   def ensure_correct_user

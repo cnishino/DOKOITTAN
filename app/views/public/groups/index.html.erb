@@ -1,4 +1,3 @@
-#関連部分のみ
 <div class='col-md-8 offset-md-1'>
       <h2>Groups</h2>
       <table class='table table-hover table-inverse'>
@@ -13,9 +12,10 @@
         <tbody>
           <% @groups.each do |group| %>
             <tr>
-              <td><%= attachment_image_tag(group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+              <td><%= attachment_image_tag(group, :image, :fill, 50, 50, fallback: "no_image.jpg") %></td>
               <td><%= link_to group.name, group_path(group) %></td>
               <td><%= group.introduction %></td>
+              <td><%= group.users.count %></td>
               <td>
                 <% if group.owner_id == current_user.id %>
                   <%= link_to 'Edit', edit_group_path(group), class: "btn btn-sm btn-success" %>
